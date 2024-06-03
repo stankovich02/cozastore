@@ -1,7 +1,8 @@
-import { Component, OnInit, Renderer2, Inject } from '@angular/core';
+import { Component, OnInit, Renderer2, Inject, AfterViewInit, AfterContentInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -11,113 +12,128 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   public nav : Array<any> = [];
   protected headerClass : string  = "";
+  protected numberOfProductsInCart : number = 0;
+  protected numberOfProductsInWishlist : number = 0;
   constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private http: HttpClient, protected router: Router) {
-    this.router.events.subscribe((val) => {
+    this.router.events.subscribe(() => {
       if (this.router.url === '/home' || this.router.url === '/') {
         this.headerClass = "";
       } else {
         this.headerClass = "header-v4";
       }
     });
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationStart)
+    ).subscribe(() => {
+      this.loadScripts();
+    });
   }
 
   ngOnInit() {
-    this.loadScripts();
     this.getNav();
   }
   
   loadScripts() {
+      const existingScripts = document.querySelectorAll('.myScripts');
+      existingScripts.forEach(script => {
+        if (script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
+      });
       let script = this.renderer.createElement('script');
       script.type = 'text/javascript';
+      script.className = 'myScripts';
       script.src = 'assets/vendor/jquery/jquery-3.2.1.min.js';
       this.renderer.appendChild(this.document.body, script);
 
       let script2 = this.renderer.createElement('script');
       script2.type = 'text/javascript';
+      script2.className = 'myScripts';
       script2.src = 'assets/vendor/bootstrap/js/popper.js';
       this.renderer.appendChild(this.document.body, script2);
 
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
+        script.addClass = 'test';
         script.src = 'assets/vendor/animsition/js/animsition.min.js';
         this.renderer.appendChild(this.document.body, script);
         }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
-        script.src = 'assets/vendor/slick/slick.min.js';
-        this.renderer.appendChild(this.document.body, script);
-      }, 300);
-      setTimeout(() => {
-        let script = this.renderer.createElement('script');
-        script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.src = 'assets/vendor/bootstrap/js/bootstrap.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.src = 'assets/vendor/select2/select2.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.src = 'assets/vendor/daterangepicker/moment.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.src = 'assets/vendor/daterangepicker/daterangepicker.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.src = 'assets/vendor/parallax100/parallax100.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.src = 'assets/vendor/MagnificPopup/jquery.magnific-popup.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script= this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.src = 'assets/vendor/isotope/isotope.pkgd.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.src = 'assets/vendor/sweetalert/sweetalert.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.src = 'assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
-        script.src = 'assets/js/slick-custom.js';
-        this.renderer.appendChild(this.document.body, script);
-      }, 1000);
-      setTimeout(() => {
-        let script = this.renderer.createElement('script');
-        script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.src = 'assets/js/main.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.innerHTML = `$(".js-select2").each(function(){
           $(this).select2({
             minimumResultsForSearch: 20,
@@ -125,10 +141,11 @@ export class AppComponent implements OnInit {
           });
         })`;
         this.renderer.appendChild(this.document.body, script);
-      }, 2000);
+      }, 500);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.innerHTML = `$('.gallery-lb').each(function() { // the containers for all your galleries
           $(this).magnificPopup({
                 delegate: 'a', // the selector for gallery item
@@ -140,10 +157,11 @@ export class AppComponent implements OnInit {
             });
         });`;
         this.renderer.appendChild(this.document.body, script);
-      }, 2000);
+      }, 500);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.innerHTML = `$('.js-addwish-b2').on('click', function(e){
           e.preventDefault();
         });
@@ -177,10 +195,11 @@ export class AppComponent implements OnInit {
           });
         });`;
         this.renderer.appendChild(this.document.body, script);
-      }, 2000);
+      }, 500);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
+        script.className = 'myScripts';
         script.innerHTML = `$('.js-pscroll').each(function(){
           $(this).css('position','relative');
           $(this).css('overflow','hidden');
@@ -195,7 +214,7 @@ export class AppComponent implements OnInit {
           })
         });`;
         this.renderer.appendChild(this.document.body, script);
-      }, 2000);
+      }, 500);
   }
   getNav() {
     this.http.get('assets/data/nav.json').subscribe((data: any) => {

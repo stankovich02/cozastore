@@ -129,7 +129,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-  }
+  } */
   
   .loader05 {
     width: 56px;
@@ -140,8 +140,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     animation: loader-scale 1s ease-out infinite;
     top: 50%;
     margin: -28px auto 0 auto; 
-  }
-  
+  } 
+
   @keyframes loader-scale {
     0% {
       transform: scale(0);
