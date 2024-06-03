@@ -2,21 +2,21 @@
     {
         "id": 1,
         "name": "Home",
-        "href": "index.html"
+        "href": "/home"
     },
     {
         "id": 2,
         "name": "About",
-        "href": "about.html"
+        "href": "/about"
     },
     {
         "id": 3,
         "name": "Shop",
-        "href": "shop.html"
+        "href": "/shop"
     },
     {
         "id": 4,
         "name": "Contact",
-        "href": "contact.html"
+        "href": "/contact"
     }
 ]
