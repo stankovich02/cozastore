@@ -19,6 +19,10 @@ const routes: Routes = [
     path:"shop",
     loadChildren:()=>import('./shop/shop.module').then(m => m.ShopModule)
   },
+  {
+    path:"contact",
+    loadChildren:()=>import('./contact/contact.module').then(m => m.ContactModule)
+  },
   { 
     path: '**', 
     redirectTo: '404' 

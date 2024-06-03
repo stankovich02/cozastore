@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
   public nav : Array<any> = [];
-  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private http: HttpClient) {}
+  protected headerClass : string  = "";
+  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private http: HttpClient, protected router: Router) {
+    this.router.events.subscribe((val) => {
+      if (this.router.url === '/home' || this.router.url === '/') {
+        this.headerClass = "";
+      } else {
+        this.headerClass = "header-v4";
+      }
+    });
+  }
 
   ngOnInit() {
     this.loadScripts();
-
     this.getNav();
   }
   
