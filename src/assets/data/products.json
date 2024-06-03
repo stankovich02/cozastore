@@ -1,0 +1,646 @@
+[
+    {
+        "id": 1,
+        "name": "Green Jacket",
+        "category": "Jackets",
+        "brand": "Nike",
+        "price":{
+            "currentPrice": 100,
+            "discount": 10
+        },
+        "description": "This is a blue jacket",
+        "sizes": ["S", "M", "L", "XL"],
+        "colors": ["Blue", "Red", "Green"],
+        "material": "Cotton",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [
+            {
+                "id": 1,
+                "rating": 5,
+                "comment": "This is a great jacket",
+                "user": "John Doe",
+                "avatar": "https://via.placeholder.com/150"
+            },
+            {
+                "id": 2,
+                "rating": 3,
+                "comment": "This is a good jacket",
+                "user": "Jane Doe",
+                "avatar": "https://via.placeholder.com/150"
+            }
+        ],
+        "averageRating": 4.0
+    },
+    {
+        "id": 2,
+        "name": "Blue Jacket",
+        "category": "Jackets",
+        "brand": "Adidas",
+        "price":{
+            "currentPrice": 50,
+            "discount": null
+        },
+        "description": "This is a blue jacket",
+        "sizes": ["S"],
+        "colors": ["Blue", "Black"],
+        "material": "Cotton",
+        "gender": "Female",
+        "inStock": false,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+    },
+    {
+        "id": 3,
+        "name": "Beauty Shoes",
+        "category": "Shoes",
+        "brand": "Zara",
+        "price":{
+            "currentPrice": 30,
+            "discount": null
+        },
+        "description": "Beauty Shoes",
+        "sizes": ["39", "40", "41", "42"],
+        "colors": ["Black"],
+        "material": "Leather",
+        "gender": "Female",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+    },
+    {
+        "id": 4,
+        "name": "Red Hoodie",
+        "category": "Hoodies",
+        "brand": "Puma",
+        "price": {
+          "currentPrice": 45,
+          "discount": null
+        },
+        "description": "Comfortable red hoodie for casual wear.",
+        "sizes": ["S", "M", "L", "XL"],
+        "colors": ["Red", "White"],
+        "material": "Polyester",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 5,
+        "name": "Black Leather Boots",
+        "category": "Shoes",
+        "brand": "Gucci",
+        "price": {
+          "currentPrice": 120,
+          "discount": null
+        },
+        "description": "Stylish black leather boots for all occasions.",
+        "sizes": ["7", "8", "9", "10"],
+        "colors": ["Black"],
+        "material": "Leather",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 6,
+        "name": "Striped Polo Shirt",
+        "category": "Shirts",
+        "brand": "Under Armour",
+        "price": {
+          "currentPrice": 60,
+          "discount": null
+        },
+        "description": "Classic striped polo shirt for a smart casual look.",
+        "sizes": ["XS", "S", "M", "L"],
+        "colors": ["Blue", "White"],
+        "material": "Cotton",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 7,
+        "name": "Denim Shorts",
+        "category": "Shorts",
+        "brand": "Levi's",
+        "price": {
+          "currentPrice": 35,
+          "discount": null
+        },
+        "description": "Trendy denim shorts for summer days.",
+        "sizes": ["28", "30", "32", "34"],
+        "colors": ["Blue"],
+        "material": "Denim",
+        "gender": "Female",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 8,
+        "name": "White Sneakers",
+        "category": "Shoes",
+        "brand": "Adidas",
+        "price": {
+          "currentPrice": 55,
+          "discount": null
+        },
+        "description": "Classic white sneakers for everyday wear.",
+        "sizes": ["6", "7", "8", "9"],
+        "colors": ["White"],
+        "material": "Canvas",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 9,
+        "name": "Cosmic Galaxy Hoodie",
+        "category": "Hoodies",
+        "brand": "H&M",
+        "price": {
+          "currentPrice": 70,
+          "discount": 15
+        },
+        "description": "Embrace the cosmos with this stunning galaxy-themed hoodie.",
+        "sizes": ["XS", "S", "M", "L"],
+        "colors": ["Black", "Purple"],
+        "material": "Cotton Blend",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 10,
+        "name": "Eclipse Leather Jacket",
+        "category": "Jackets",
+        "brand": "The North Face",
+        "price": {
+          "currentPrice": 150,
+          "discount": null
+        },
+        "description": "Make a bold statement with this sleek leather jacket inspired by lunar eclipses.",
+        "sizes": ["M", "L", "XL"],
+        "colors": ["Black"],
+        "material": "Genuine Leather",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 11,
+        "name": "Midnight Sky Jeans",
+        "category": "Jeans",
+        "brand": "Steve Madden",
+        "price": {
+          "currentPrice": 55,
+          "discount": null
+        },
+        "description": "Channel the beauty of the night sky with these stylish midnight blue jeans.",
+        "sizes": ["28", "30", "32", "34"],
+        "colors": ["Blue"],
+        "material": "Denim",
+        "gender": "Female",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 12,
+        "name": "Neon Dream Sneakers",
+        "category": "Shoes",
+        "brand": "Pumas",
+        "price": {
+          "currentPrice": 80,
+          "discount": null
+        },
+        "description": "Step into the future with these electrifying neon sneakers.",
+        "sizes": ["7", "8", "9", "10"],
+        "colors": ["Neon Green", "Neon Pink"],
+        "material": "Synthetic",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 13,
+        "name": "Mystic Moonlight Dress",
+        "category": "Dresses",
+        "brand": "Lululemon",
+        "price": {
+          "currentPrice": 90,
+          "discount": null
+        },
+        "description": "Dance under the moonlight in this ethereal dress adorned with shimmering sequins.",
+        "sizes": ["S", "M", "L"],
+        "colors": ["Silver"],
+        "material": "Polyester",
+        "gender": "Female",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 14,
+        "name": "Galactic Tee",
+        "category": "T-Shirts",
+        "brand": "Tommy Hilfiger",
+        "price": {
+          "currentPrice": 25,
+          "discount": null
+        },
+        "description": "Embrace your inner space enthusiast with this cosmic-themed t-shirt.",
+        "sizes": ["S", "M", "L", "XL"],
+        "colors": ["Black", "Navy"],
+        "material": "Cotton",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 15,
+        "name": "Nebula Shirt",
+        "category": "Shirts",
+        "brand": "Nike",
+        "price": {
+          "currentPrice": 40,
+          "discount": null
+        },
+        "description": "Dress to impress with this stylish shirt featuring a mesmerizing nebula print.",
+        "sizes": ["S", "M", "L"],
+        "colors": ["Blue"],
+        "material": "Cotton",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 16,
+        "name": "Space Explorer Suit",
+        "category": "Suits",
+        "brand": "Zara",
+        "price": {
+          "currentPrice": 250,
+          "discount": null
+        },
+        "description": "Command attention in any galaxy with this sleek and futuristic space explorer suit.",
+        "sizes": ["S", "M", "L"],
+        "colors": ["Black"],
+        "material": "Polyester Blend",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 17,
+        "name": "Solar Flare Jacket",
+        "category": "Jackets",
+        "brand": "The North Face",
+        "price": {
+          "currentPrice": 120,
+          "discount": 10
+        },
+        "description": "Ignite your style with this fiery solar flare-inspired jacket.",
+        "sizes": ["M", "L", "XL"],
+        "colors": ["Orange", "Red"],
+        "material": "Nylon",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 18,
+        "name": "Stellar Sneakers",
+        "category": "Sneakers",
+        "brand": "Fila",
+        "price": {
+          "currentPrice": 90,
+          "discount": 5
+        },
+        "description": "Walk among the stars with these comfortable and stylish stellar sneakers.",
+        "sizes": ["7", "8", "9", "10"],
+        "colors": ["Black", "White"],
+        "material": "Mesh",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 19,
+        "name": "Lunar Eclipse Hoodie",
+        "category": "Hoodies",
+        "brand": "Gucci",
+        "price": {
+          "currentPrice": 80,
+          "discount": null
+        },
+        "description": "Capture the mystique of a lunar eclipse with this celestial hoodie.",
+        "sizes": ["XS", "S", "M", "L"],
+        "colors": ["Black", "Gray"],
+        "material": "Cotton Blend",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 20,
+        "name": "Galactic Guardian Suit",
+        "category": "Suits",
+        "brand": "Zara",
+        "price": {
+          "currentPrice": 300,
+          "discount": 20
+        },
+        "description": "Protect the cosmos in style with this futuristic galactic guardian suit.",
+        "sizes": ["S", "M", "L", "XL"],
+        "colors": ["Black", "Silver"],
+        "material": "Polyester",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 21,
+        "name": "Celestial Sky Jeans",
+        "category": "Jeans",
+        "brand": "H&M",
+        "price": {
+          "currentPrice": 60,
+          "discount": null
+        },
+        "description": "Embark on a cosmic journey in these star-studded celestial sky jeans.",
+        "sizes": ["28", "30", "32", "34"],
+        "colors": ["Blue"],
+        "material": "Denim",
+        "gender": "Female",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 22,
+        "name": "Comet Shorts",
+        "category": "Shorts",
+        "brand": "Nike",
+        "price": {
+          "currentPrice": 40,
+          "discount": null
+        },
+        "description": "Race through the galaxy in these speedy comet shorts.",
+        "sizes": ["S", "M", "L"],
+        "colors": ["Black"],
+        "material": "Polyester",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 23,
+        "name": "Cosmic Voyager Shoes",
+        "category": "Shoes",
+        "brand": "Columbia",
+        "price": {
+          "currentPrice": 100,
+          "discount": 10
+        },
+        "description": "Explore the universe in comfort and style with these cosmic voyager shoes.",
+        "sizes": ["7", "8", "9", "10"],
+        "colors": ["Black", "Blue"],
+        "material": "Mesh",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 24,
+        "name": "Retro Logo T-Shirt",
+        "category": "T-Shirts",
+        "brand": "Levi's",
+        "price": {
+          "currentPrice": 20,
+          "discount": null
+        },
+        "description": "Step back in time with this cool retro logo t-shirt.",
+        "sizes": ["S", "M", "L", "XL"],
+        "colors": ["White", "Gray"],
+        "material": "Cotton",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 25,
+        "name": "Floral Print Shirt",
+        "category": "Shirts",
+        "brand": "Tommy Hilfiger",
+        "price": {
+          "currentPrice": 45,
+          "discount": null
+        },
+        "description": "Bring a touch of nature to your wardrobe with this stylish floral print shirt.",
+        "sizes": ["S", "M", "L"],
+        "colors": ["Green", "White"],
+        "material": "Cotton",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 26,
+        "name": "Cozy Winter Hoodie",
+        "category": "Hoodies",
+        "brand": "Champion",
+        "price": {
+          "currentPrice": 60,
+          "discount": null
+        },
+        "description": "Stay warm and stylish during the winter months with this cozy hoodie.",
+        "sizes": ["XS", "S", "M", "L"],
+        "colors": ["Blue", "Gray"],
+        "material": "Fleece",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 27,
+        "name": "Business Casual Suit",
+        "category": "Suits",
+        "brand": "Christian Louboutin",
+        "price": {
+          "currentPrice": 200,
+          "discount": null
+        },
+        "description": "Elevate your professional wardrobe with this sleek and sophisticated business casual suit.",
+        "sizes": ["S", "M", "L", "XL"],
+        "colors": ["Navy", "Gray"],
+        "material": "Wool Blend",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 28,
+        "name": "Business Casual Suit",
+        "category": "Suits",
+        "brand": "ALDO",
+        "price": {
+          "currentPrice": 200,
+          "discount": null
+        },
+        "description": "Elevate your professional wardrobe with this sleek and sophisticated business casual suit.",
+        "sizes": ["S", "M", "L", "XL"],
+        "colors": ["Navy", "Gray"],
+        "material": "Wool Blend",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 29,
+        "name": "Classic Blue Jeans",
+        "category": "Jeans",
+        "brand": "Zara",
+        "price": {
+          "currentPrice": 50,
+          "discount": null
+        },
+        "description": "Stay effortlessly stylish with these classic blue jeans.",
+        "sizes": ["28", "30", "32", "34"],
+        "colors": ["Blue"],
+        "material": "Denim",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 30,
+        "name": "Beach Shorts",
+        "category": "Shorts",
+        "brand": "Adidas",
+        "price": {
+          "currentPrice": 25,
+          "discount": null
+        },
+        "description": "Get ready for fun in the sun with these vibrant beach shorts.",
+        "sizes": ["S", "M", "L"],
+        "colors": ["Yellow", "Blue"],
+        "material": "Polyester",
+        "gender": "Male",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 31,
+        "name": "Casual Canvas Shoes",
+        "category": "Shoes",
+        "brand": "Gucci",
+        "price": {
+          "currentPrice": 40,
+          "discount": null
+        },
+        "description": "Keep it casual and comfortable with these classic canvas shoes.",
+        "sizes": ["7", "8", "9", "10"],
+        "colors": ["Black", "White"],
+        "material": "Canvas",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 32,
+        "name": "Sporty Sneakers",
+        "category": "Sneakers",
+        "brand": "Puma",
+        "price": {
+          "currentPrice": 70,
+          "discount": null
+        },
+        "description": "Stay on the move with these comfortable and stylish sporty sneakers.",
+        "sizes": ["7", "8", "9", "10"],
+        "colors": ["Black", "Gray"],
+        "material": "Synthetic",
+        "gender": "Unisex",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      },
+      {
+        "id": 33,
+        "name": "Trendy Denim Jacket",
+        "category": "Jackets",
+        "brand": "H&M",
+        "price": {
+          "currentPrice": 70,
+          "discount": null
+        },
+        "description": "Stay on trend with this stylish denim jacket featuring distressed details.",
+        "sizes": ["S", "M", "L"],
+        "colors": ["Blue"],
+        "material": "Denim",
+        "gender": "Female",
+        "inStock": true,
+        "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+        "reviews": [],
+        "averageRating": 0
+      }
+      
+      
+]

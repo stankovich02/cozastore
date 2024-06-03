@@ -1,0 +1,98 @@
+[ 
+    {
+        "id":1,
+        "name": "Nike"
+    },
+    {
+        "id":2,
+        "name": "Adidas"
+    },
+    {
+        "id":3,
+        "name": "Puma"
+    },
+    {
+        "id":4,
+        "name": "Levi's"
+    },
+    {
+        "id":5,
+        "name": "Calvin Klein"
+    },
+    {
+        "id":6,
+        "name": "Tommy Hilfiger"
+    },
+    {
+        "id":7,
+        "name": "The North Face"
+    },
+    {
+        "id":8,
+        "name": "Columbia"
+    },
+    {
+        "id":9,
+        "name": "Patagonia"
+    },
+    {
+        "id": 10,
+        "name": "Champion"
+    },
+    {
+        "id": 11,
+        "name": "Hollister"
+    },
+    {
+        "id": 12,
+        "name": "Fila"
+    },
+    {
+        "id": 13,
+        "name": "Zara"
+    },
+    {
+        "id": 14,
+        "name": "H&M"
+    },
+    {
+        "id": 15,
+        "name": "Forever 21"
+    },
+    {
+        "id": 16,
+        "name": "Lululemon"
+    },
+    {
+        "id": 17,
+        "name": "Under Armour"
+    },
+    {
+        "id": 18,
+        "name": "New Balance"
+    },
+    {
+        "id": 19,
+        "name": "Jimmy Choo"
+    },
+    {
+        "id": 20,
+        "name": "Christian Louboutin"
+    },
+    {
+        "id": 21,
+        "name": "Gucci"
+    },
+    {
+        "id": 22,
+        "name": "Dr. Martens"
+    },
+    {
+        "id": 23,
+        "name": "Steve Madden"
+    },
+    {
+        "id": 24,
+        "name": "ALDO"
+    }
+]
