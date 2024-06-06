@@ -56,7 +56,6 @@ export class AppComponent implements OnInit {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.addClass = 'test';
         script.src = 'assets/vendor/animsition/js/animsition.min.js';
         this.renderer.appendChild(this.document.body, script);
         }, 150);

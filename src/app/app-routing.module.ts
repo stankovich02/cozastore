@@ -27,10 +27,10 @@ const routes: Routes = [
     path:"cart",
     loadChildren:()=>import('./cart/cart.module').then(m => m.CartModule)
   },
-  // {
-  //   path:"wishlist",
-  //   loadChildren:()=>import('.//contact.module').then(m => m.ContactModule)
-  // },
+  {
+    path:"wishlist",
+    loadChildren:()=>import('./wishlist/wishlist.module').then(m => m.WishlistModule)
+  },
   { 
     path: '**', 
     redirectTo: '404' 
