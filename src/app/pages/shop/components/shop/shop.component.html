@@ -249,7 +249,7 @@
 						<!-- Block2 -->
 						<div class="block2">
 							<div class="block2-pic hov-img0">
-								<img src="assets/images/products/{{p.images[0]}}.webp" alt="{{p.name}}">
+								<img src="assets/images/products/{{p.images[0]}}.jpg" alt="{{p.name}}">
 	
 								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 									Add to Cart
@@ -258,12 +258,13 @@
 	
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a routerLink="/products/{{p.id}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										{{ p.name }}
 									</a>
 	
 									<span class="stext-105 cl3">
-										${{p.price.discount == null ? p.price.currentPrice : p.price.currentPrice * (1 - p.price.discount/100)}}
+										<span *ngIf="p.price.discount != null" style="text-decoration: line-through; color: red;">${{ p.price.currentPrice }}</span>
+  										{{ p.price.discount == null ? ('$' + p.price.currentPrice) : ('$' + (p.price.currentPrice * (1 - p.price.discount/100))) }}
 									</span>
 								</div>
 	

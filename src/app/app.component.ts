@@ -43,90 +43,90 @@ export class AppComponent implements OnInit {
       let script = this.renderer.createElement('script');
       script.type = 'text/javascript';
       script.className = 'myScripts';
-      script.src = 'assets/vendor/jquery/jquery-3.2.1.min.js';
+      script.src = '/assets/vendor/jquery/jquery-3.2.1.min.js';
       this.renderer.appendChild(this.document.body, script);
 
       let script2 = this.renderer.createElement('script');
       script2.type = 'text/javascript';
       script2.className = 'myScripts';
-      script2.src = 'assets/vendor/bootstrap/js/popper.js';
+      script2.src = '/assets/vendor/bootstrap/js/popper.js';
       this.renderer.appendChild(this.document.body, script2);
 
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.src = 'assets/vendor/animsition/js/animsition.min.js';
+        script.src = '/assets/vendor/animsition/js/animsition.min.js';
         this.renderer.appendChild(this.document.body, script);
         }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.src = 'assets/vendor/bootstrap/js/bootstrap.min.js';
+        script.src = '/assets/vendor/bootstrap/js/bootstrap.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.src = 'assets/vendor/select2/select2.min.js';
+        script.src = '/assets/vendor/select2/select2.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.src = 'assets/vendor/daterangepicker/moment.min.js';
+        script.src = '/assets/vendor/daterangepicker/moment.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.src = 'assets/vendor/daterangepicker/daterangepicker.js';
+        script.src = '/assets/vendor/daterangepicker/daterangepicker.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.src = 'assets/vendor/parallax100/parallax100.js';
+        script.src = '/assets/vendor/parallax100/parallax100.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.src = 'assets/vendor/MagnificPopup/jquery.magnific-popup.min.js';
+        script.src = '/assets/vendor/MagnificPopup/jquery.magnific-popup.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script= this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.src = 'assets/vendor/isotope/isotope.pkgd.min.js';
+        script.src = '/assets/vendor/isotope/isotope.pkgd.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.src = 'assets/vendor/sweetalert/sweetalert.min.js';
+        script.src = '/assets/vendor/sweetalert/sweetalert.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.src = 'assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js';
+        script.src = '/assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.src = 'assets/js/main.js';
+        script.src = '/assets/js/main.js';
         this.renderer.appendChild(this.document.body, script);
       }, 150);
       setTimeout(() => {

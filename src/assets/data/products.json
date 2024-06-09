@@ -298,7 +298,7 @@
         "colors": ["Blue"],
         "gender": "Male",
         "inStock": true,
-        "images": ["space_explorer_suit_1", "space_explorer_suit_2", "space_explorer_suit_3"],
+        "images": ["space_explorer_jeans_1", "space_explorer_jeans_2", "space_explorer_jeans_3"],
         "reviews": [],
         "averageRating": 0
       },

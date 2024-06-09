@@ -10,6 +10,6 @@ export interface Product {
     gender: string;
     inStock: boolean;
     images: string[];
-    reviews: object[];
+    reviews: any[];
     averageRating: number;
 }

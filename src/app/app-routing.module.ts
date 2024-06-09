@@ -19,6 +19,9 @@ const routes: Routes = [
     path:"shop",
     loadChildren:()=>import('./pages/shop/shop.module').then(m => m.ShopModule)
   },
+  { path: "products/:id",
+    loadChildren: () => import('./pages/single-product/single-product.module').then(m => m.SingleProductModule) 
+  },
   {
     path:"contact",
     loadChildren:()=>import('./pages/contact/contact.module').then(m => m.ContactModule)
