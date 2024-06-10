@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { ProductsService } from '../../../../services/products.service';
-import { Product } from '../../../../models/product';
+import { ProductsService } from '../../../../shared/services/products.service';
+import { Product } from '../../../../core/models/object-model';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -11,20 +11,23 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./single-product.component.css']
 })
 export class SingleProductComponent implements OnInit{
+  private productId: string = '';
   protected product : Product = {} as Product;
   protected relatedProducts : Product[] = [];
   constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private productService : ProductsService, private route: ActivatedRoute,private router: Router) {
    
   };
   ngOnInit(): void {
+    this.productId = this.route.snapshot.paramMap.get('id')!;
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      this.loadProductsAndRelatedProducts();
-      this.loadScripts();
+        this.loadProductAndRelatedProducts();
+        this.loadScripts();
+        location.reload();
     });
    
-    this.loadProductsAndRelatedProducts();
+    this.loadProductAndRelatedProducts();
     this.loadScripts();
   }
   getProductImagePath(imagePath: string) {
@@ -40,7 +43,7 @@ export class SingleProductComponent implements OnInit{
     }
     return html;
   }
-  loadProductsAndRelatedProducts() {
+  loadProductAndRelatedProducts() {
     this.productService.getProduct(parseInt(this.route.snapshot.paramMap.get('id')!)).subscribe((product: Product) => {
       this.product = product;
 
@@ -77,6 +80,11 @@ export class SingleProductComponent implements OnInit{
     const existingScripts = this.document.querySelectorAll('.myScripts');
     existingScripts.forEach(script => {
       this.renderer.removeChild(this.document.body, script);
+    });
+  }
+  reloadComponent() {
+    this.router.navigateByUrl('/products/' + this.productId, { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/products/' + this.productId]);
     });
   }
 

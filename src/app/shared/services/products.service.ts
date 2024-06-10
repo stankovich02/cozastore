@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from '../models/product';
+import { Product } from '../../core/models/object-model';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  
-  constructor(private http : HttpClient){
+  constructor(private http : HttpClient, private router : Router){
   }
   getProducts() : Observable<Product[]>{
     return this.http.get<Product[]>('/assets/data/products.json');
@@ -28,5 +28,11 @@ export class ProductsService {
     return this.http.get<Product[]>('/assets/data/products.json').pipe(
       map(products => products.filter(product => product.category === category && product.gender === gender && product.id !== id))
     );
+  }
+  loadProduct(){
+    const productId = localStorage.getItem('productId');
+    if(productId){
+      this.router.navigate(['/products/' + productId]);
+    }
   }
 }
