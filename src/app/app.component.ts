@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, Inject, AfterViewInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Renderer2, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router, NavigationStart } from '@angular/router';
@@ -10,18 +10,9 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public nav : Array<any> = [];
-  protected headerClass : string  = "";
-  protected numberOfProductsInCart : number = 0;
-  protected numberOfProductsInWishlist : number = 0;
+
   constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private http: HttpClient, protected router: Router) {
-    this.router.events.subscribe(() => {
-      if (this.router.url === '/home' || this.router.url === '/') {
-        this.headerClass = "";
-      } else {
-        this.headerClass = "header-v4";
-      }
-    });
+    
     this.router.events.pipe(
       filter(event => event instanceof NavigationStart)
     ).subscribe(() => {
@@ -30,7 +21,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getNav();
+
   }
   
   loadScripts() {
@@ -215,9 +206,5 @@ export class AppComponent implements OnInit {
         this.renderer.appendChild(this.document.body, script);
       }, 500);
   }
-  getNav() {
-    this.http.get('assets/data/nav.json').subscribe((data: any) => {
-      this.nav = data;
-    });
-  }
+ 
 }
