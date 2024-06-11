@@ -152,7 +152,57 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
       transform: scale(1);
       opacity: 0; } 
   }
-  
+  #filterRed {
+    color: red;
+  }
+  #filterGreen {
+    color: green;
+  }
+  #filterBlue {
+    color: blue;
+  }
+  #filterYellow {
+    color: yellow;
+  }
+  #filterOrange {
+    color: orange;
+  }
+  #filterPurple {
+    color: purple;
+  }
+  #filterPink {
+    color: pink;
+  }
+  #filterBrown {
+    color: brown;
+  }
+  #filterGrey {
+    color: grey;
+  }
+  #filterBlack {
+    color: black;
+  }
+  #filterWhite {
+    color: white;
+  }
+  .categoryFilter,.brandFilter,.colorFilter,.priceFilter,.sizeFilter{
+    cursor: pointer;
+  }
+  .categoryFilter:hover,.brandFilter:hover,.colorFilter:hover,.priceFilter:hover{
+    color: #6c7ae0!important;
+  }
+  .sizeFilter:hover{
+    background-color: #6c7ae0!important;
+    color: white!important;
+  }
+  .activeCategory,.activeBrand,.activeColor,.activePrice{
+    font-weight: bold;
+    color: #6c7ae0!important;
+  }
+  .activeSize{
+    color: white!important;
+    background-color: #6c7ae0!important;
+  }
   /*//////////////////////////////////////////////////////////////////
   [ BUTTON BACK TO TOP ]*/
   .btn-back-to-top {
@@ -1743,11 +1793,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   }
   
   /*---------------------------------------------*/
-  .filter-col1 {width: 27%;}
-  .filter-col2 {width: 27%;}
-  .filter-col3 {width: 26%;}
+  .filter-col1 {width: 20%;}
+  .filter-col2 {width: 20%;}
+  .filter-col3 {width: 20%;}
   .filter-col4 {width: 20%;}
-  
+  .filter-col5 {width: 20%;}
   /*---------------------------------------------*/
   .filter-link {
     color: #aaa;

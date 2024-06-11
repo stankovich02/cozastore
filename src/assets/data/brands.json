@@ -17,86 +17,54 @@
     },
     {
         "id":5,
-        "name": "Calvin Klein"
-    },
-    {
-        "id":6,
         "name": "Tommy Hilfiger"
     },
     {
-        "id":7,
+        "id":6,
         "name": "The North Face"
     },
     {
-        "id":8,
+        "id":7,
         "name": "Columbia"
     },
     {
-        "id":9,
-        "name": "Patagonia"
-    },
-    {
-        "id": 10,
-        "name": "Champion"
-    },
-    {
-        "id": 11,
-        "name": "Hollister"
-    },
-    {
-        "id": 12,
+        "id": 8,
         "name": "Fila"
     },
     {
-        "id": 13,
+        "id": 8,
         "name": "Zara"
     },
     {
-        "id": 14,
+        "id": 10,
         "name": "H&M"
     },
     {
-        "id": 15,
-        "name": "Forever 21"
-    },
-    {
-        "id": 16,
+        "id": 11,
         "name": "Lululemon"
     },
     {
-        "id": 17,
+        "id": 12,
         "name": "Under Armour"
     },
     {
-        "id": 18,
+        "id": 13,
         "name": "New Balance"
     },
     {
-        "id": 19,
-        "name": "Jimmy Choo"
-    },
-    {
-        "id": 20,
-        "name": "Christian Louboutin"
-    },
-    {
-        "id": 21,
+        "id": 14,
         "name": "Gucci"
     },
     {
-        "id": 22,
-        "name": "Dr. Martens"
-    },
-    {
-        "id": 23,
+        "id": 15,
         "name": "Steve Madden"
     },
     {
-        "id": 24,
+        "id": 16,
         "name": "ALDO"
     },
     {
-        "id": 25,
+        "id": 17,
         "name": "Kappa"
     }
 ]

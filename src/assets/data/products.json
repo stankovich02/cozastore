@@ -4,10 +4,12 @@
         "name": "Green Jacket",
         "category": "Jackets",
         "brand": "Nike",
-        "price":{
-            "currentPrice": 100,
-            "discount": 10
+        "price":
+        {
+            "oldPrice": 100,
+            "activePrice": 90
         },
+        "discount": 10,
         "description": "This is a green jacket",
         "sizes": ["S", "M", "L", "XL"],
         "colors": ["Green"],
@@ -37,10 +39,12 @@
         "name": "Blue Jacket",
         "category": "Jackets",
         "brand": "Adidas",
-        "price":{
-            "currentPrice": 50,
-            "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 50
         },
+        "discount": null,
         "description": "This is a blue jacket",
         "sizes": ["S"],
         "colors": ["Blue"],
@@ -55,10 +59,12 @@
         "name": "Beauty Shoes",
         "category": "Shoes",
         "brand": "Zara",
-        "price":{
-            "currentPrice": 30,
-            "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 30
         },
+        "discount": null,
         "description": "Beauty Shoes",
         "sizes": ["39", "40", "41", "42"],
         "colors": ["Black"],
@@ -73,10 +79,12 @@
         "name": "Red Hoodie",
         "category": "Hoodies",
         "brand": "Puma",
-        "price": {
-          "currentPrice": 45,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 40
         },
+        "discount": null,
         "description": "Comfortable red hoodie for casual wear.",
         "sizes": ["S", "M"],
         "colors": ["Red", "White"],
@@ -91,10 +99,12 @@
         "name": "Black Leather Boots",
         "category": "Boots",
         "brand": "Gucci",
-        "price": {
-          "currentPrice": 120,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 120
         },
+        "discount": null,
         "description": "Stylish black leather boots for all occasions.",
         "sizes": ["39", "40"],
         "colors": ["Black"],
@@ -109,10 +119,12 @@
         "name": "Striped Polo Shirt",
         "category": "Shirts",
         "brand": "Under Armour",
-        "price": {
-          "currentPrice": 60,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 60
         },
+        "discount": null,
         "description": "Classic striped polo shirt for a smart casual look.",
         "sizes": ["XS", "S", "M", "L"],
         "colors": ["Blue", "White"],
@@ -127,10 +139,12 @@
         "name": "Denim Shorts",
         "category": "Shorts",
         "brand": "Levi's",
-        "price": {
-          "currentPrice": 35,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 35
         },
+        "discount": null,
         "description": "Trendy denim shorts for summer days.",
         "sizes": ["S","L"],
         "colors": ["Blue"],
@@ -145,10 +159,12 @@
         "name": "White Sneakers",
         "category": "Sneakers",
         "brand": "Adidas",
-        "price": {
-          "currentPrice": 55,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 55
         },
+        "discount": null,
         "description": "Classic white sneakers for everyday wear.",
         "sizes": ["40", "41", "42", "43"],
         "colors": ["White"],
@@ -163,10 +179,12 @@
         "name": "Cosmic Galaxy Hoodie",
         "category": "Hoodies",
         "brand": "H&M",
-        "price": {
-          "currentPrice": 70,
-          "discount": 15
+        "price":
+        {
+            "oldPrice": 70,
+            "activePrice": 59.5
         },
+        "discount": 15,
         "description": "Embrace the cosmos with this stunning galaxy-themed hoodie.",
         "sizes": ["XS", "S", "M", "L"],
         "colors": ["Black", "Purple"],
@@ -181,10 +199,12 @@
         "name": "Eclipse Leather Jacket",
         "category": "Jackets",
         "brand": "The North Face",
-        "price": {
-          "currentPrice": 150,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 150
         },
+        "discount": null,
         "description": "Make a bold statement with this sleek leather jacket inspired by lunar eclipses.",
         "sizes": ["M", "L", "XL"],
         "colors": ["Black"],
@@ -199,10 +219,12 @@
         "name": "Midnight Sky Jeans",
         "category": "Jeans",
         "brand": "Steve Madden",
-        "price": {
-          "currentPrice": 55,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 55
         },
+        "discount": null,
         "description": "Channel the beauty of the night sky with these stylish midnight blue jeans.",
         "sizes": ["S", "L", "XXL"],
         "colors": ["Blue"],
@@ -217,10 +239,12 @@
         "name": "Neon Dream Sneakers",
         "category": "Sneakers",
         "brand": "Puma",
-        "price": {
-          "currentPrice": 80,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 80
         },
+        "discount": null,
         "description": "Step into the future with these electrifying neon sneakers.",
         "sizes": ["38", "39", "40", "41"],
         "colors": ["Green", "Pink"],
@@ -235,10 +259,12 @@
         "name": "Mystic Moonlight Dress",
         "category": "Dresses",
         "brand": "Lululemon",
-        "price": {
-          "currentPrice": 90,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 90
         },
+        "discount": null,
         "description": "Dance under the moonlight in this ethereal dress adorned with shimmering sequins.",
         "sizes": ["S", "M", "L"],
         "colors": ["Pink"],
@@ -253,10 +279,12 @@
         "name": "Galactic Tee",
         "category": "T-Shirts",
         "brand": "Tommy Hilfiger",
-        "price": {
-          "currentPrice": 25,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 25
         },
+        "discount": null,
         "description": "Embrace your inner space enthusiast with this cosmic-themed t-shirt.",
         "sizes": ["XL"],
         "colors": ["Black"],
@@ -271,10 +299,12 @@
         "name": "Nebula Shirt",
         "category": "Shirts",
         "brand": "Nike",
-        "price": {
-          "currentPrice": 40,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 40
         },
+        "discount": null,
         "description": "Dress to impress with this stylish shirt featuring a mesmerizing nebula print.",
         "sizes": ["S", "M", "L"],
         "colors": ["Blue"],
@@ -289,10 +319,12 @@
         "name": "Space Explorer Jeans",
         "category": "Jeans",
         "brand": "Zara",
-        "price": {
-          "currentPrice": 250,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 250
         },
+        "discount": null,
         "description": "Command attention in any galaxy with this sleek and futuristic space explorer suit.",
         "sizes": ["S", "M"],
         "colors": ["Blue"],
@@ -307,10 +339,12 @@
         "name": "Solar Flare Jacket",
         "category": "Jackets",
         "brand": "The North Face",
-        "price": {
-          "currentPrice": 120,
-          "discount": 10
+        "price":
+        {
+            "oldPrice": 120,
+            "activePrice": 108
         },
+        "discount": 10,
         "description": "Ignite your style with this fiery solar flare-inspired jacket.",
         "sizes": ["L", "XL"],
         "colors": ["Orange", "Red"],
@@ -325,10 +359,12 @@
         "name": "Stellar Sneakers",
         "category": "Sneakers",
         "brand": "Fila",
-        "price": {
-          "currentPrice": 90,
-          "discount": 5
+        "price":
+        {
+            "oldPrice": 90,
+            "activePrice": 85.5
         },
+        "discount": 5,
         "description": "Walk among the stars with these comfortable and stylish stellar sneakers.",
         "sizes": ["41"],
         "colors": ["Black", "White"],
@@ -343,10 +379,12 @@
         "name": "Lunar Eclipse Hoodie",
         "category": "Hoodies",
         "brand": "Gucci",
-        "price": {
-          "currentPrice": 80,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 80
         },
+        "discount": null,
         "description": "Capture the mystique of a lunar eclipse with this celestial hoodie.",
         "sizes": ["XS", "S"],
         "colors": ["Black", "Gray"],
@@ -361,10 +399,12 @@
         "name": "Galactic Guardian Shorts",
         "category": "Shorts",
         "brand": "Zara",
-        "price": {
-          "currentPrice": 300,
-          "discount": 20
+        "price":
+        {
+            "oldPrice": 300,
+            "activePrice": 240
         },
+        "discount": 20,
         "description": "Protect the cosmos in style with this futuristic galactic guardian suit.",
         "sizes": ["S", "XL"],
         "colors": ["Black", "Silver"],
@@ -379,10 +419,12 @@
         "name": "Celestial Sky Jeans",
         "category": "Jeans",
         "brand": "H&M",
-        "price": {
-          "currentPrice": 60,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 60
         },
+        "discount": null,
         "description": "Embark on a cosmic journey in these star-studded celestial sky jeans.",
         "sizes": ["XL", "XXL"],
         "colors": ["Blue"],
@@ -397,10 +439,12 @@
         "name": "Comet Shorts",
         "category": "Shorts",
         "brand": "Nike",
-        "price": {
-          "currentPrice": 40,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 40
         },
+        "discount": null,
         "description": "Race through the galaxy in these speedy comet shorts.",
         "sizes": ["S", "M", "L"],
         "colors": ["Black"],
@@ -415,10 +459,12 @@
         "name": "Cosmic Voyager Shoes",
         "category": "Shoes",
         "brand": "Columbia",
-        "price": {
-          "currentPrice": 100,
-          "discount": 10
+        "price":
+        {
+            "oldPrice": 100,
+            "activePrice": 90
         },
+        "discount": 10,
         "description": "Explore the universe in comfort and style with these cosmic voyager shoes.",
         "sizes": ["39", "40", "41"],
         "colors": ["Black", "Blue"],
@@ -433,10 +479,12 @@
         "name": "Retro Logo T-Shirt",
         "category": "T-Shirts",
         "brand": "Under Armour",
-        "price": {
-          "currentPrice": 20,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 20
         },
+        "discount": null,
         "description": "Step back in time with this cool retro logo t-shirt.",
         "sizes": ["S", "M", "L"],
         "colors": ["White", "Gray"],
@@ -451,10 +499,12 @@
         "name": "Floral Print Shirt",
         "category": "Shirts",
         "brand": "Tommy Hilfiger",
-        "price": {
-          "currentPrice": 45,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 45
         },
+        "discount": null,
         "description": "Bring a touch of nature to your wardrobe with this stylish floral print shirt.",
         "sizes": ["S", "M", "L"],
         "colors": ["Green", "White"],
@@ -469,10 +519,12 @@
         "name": "Cozy Winter Hoodie",
         "category": "Hoodies",
         "brand": "New Balance",
-        "price": {
-          "currentPrice": 60,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 60
         },
+        "discount": null,
         "description": "Stay warm and stylish during the winter months with this cozy hoodie.",
         "sizes": ["XS", "L"],
         "colors": ["Blue", "Gray"],
@@ -487,10 +539,12 @@
         "name": "Casual Thirt",
         "category": "T-Shirts",
         "brand": "Kappa",
-        "price": {
-          "currentPrice": 200,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 200
         },
+        "discount": null,
         "description": "Elevate your professional wardrobe with this sleek and sophisticated business casual suit.",
         "sizes": ["S", "XL"],
         "colors": ["Blue"],
@@ -505,10 +559,12 @@
         "name": "Brown Boots",
         "category": "Boots",
         "brand": "ALDO",
-        "price": {
-          "currentPrice": 200,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 200
         },
+        "discount": null,
         "description": "Elevate your professional wardrobe with this sleek and sophisticated business casual suit.",
         "sizes": ["40", "41", "42", "43"],
         "colors": ["Brown"],
@@ -523,10 +579,12 @@
         "name": "Classic Blue Sneakers",
         "category": "Sneakers",
         "brand": "Nike",
-        "price": {
-          "currentPrice": 50,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 50
         },
+        "discount": null,
         "description": "Stay effortlessly stylish with these classic blue jeans.",
         "sizes": ["38", "39", "40", "41"],
         "colors": ["Blue"],
@@ -541,10 +599,12 @@
         "name": "Beach Shorts",
         "category": "Shorts",
         "brand": "Kappa",
-        "price": {
-          "currentPrice": 25,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 25
         },
+        "discount": null,
         "description": "Get ready for fun in the sun with these vibrant beach shorts.",
         "sizes": ["S"],
         "colors": ["Orange"],
@@ -559,10 +619,12 @@
         "name": "Casual Canvas Shoes",
         "category": "Shoes",
         "brand": "Gucci",
-        "price": {
-          "currentPrice": 40,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 40
         },
+        "discount": null,
         "description": "Keep it casual and comfortable with these classic canvas shoes.",
         "sizes": ["42"],
         "colors": ["Green"],
@@ -577,10 +639,12 @@
         "name": "Sporty Sneakers",
         "category": "Sneakers",
         "brand": "Puma",
-        "price": {
-          "currentPrice": 70,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 70
         },
+        "discount": null,
         "description": "Stay on the move with these comfortable and stylish sporty sneakers.",
         "sizes": ["40","42"],
         "colors": ["Pink"],
@@ -595,10 +659,12 @@
         "name": "Trendy Denim Jacket",
         "category": "Jackets",
         "brand": "H&M",
-        "price": {
-          "currentPrice": 70,
-          "discount": null
+        "price":
+        {
+            "oldPrice": null,
+            "activePrice": 70
         },
+        "discount": null,
         "description": "Stay on trend with this stylish denim jacket featuring distressed details.",
         "sizes": ["S", "M", "L"],
         "colors": ["Blue"],

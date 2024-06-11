@@ -4,6 +4,7 @@ export class Product {
     category: string;
     brand: string;
     price: any;
+    discount: number | null;
     description: string;
     sizes: string[];
     colors: string[];
@@ -12,4 +13,8 @@ export class Product {
     images: string[];
     reviews: any[];
     averageRating: number;
+}
+export class NamedEntity{
+    id: number;
+    name: string;
 }

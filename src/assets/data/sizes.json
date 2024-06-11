@@ -1,59 +1,59 @@
 [
     {
         "id":1,
-        "size": "XS"
+        "name": "XS"
     },
     {
         "id":2,
-        "size": "S"
+        "name": "S"
     },
     {
         "id":3,
-        "size": "M"
+        "name": "M"
     },
     {
         "id":4,
-        "size": "L"
+        "name": "L"
     },
     {
         "id":5,
-        "size": "XL"
+        "name": "XL"
     },
     {
         "id":6,
-        "size": "XXL"
+        "name": "XXL"
     },
     {
         "id":7,
-        "size": "38"
+        "name": "38"
     },
     {
         "id":8,
-        "size": "39"
+        "name": "39"
     },
     {
         "id":9,
-        "size": "40"
+        "name": "40"
     },
     {
         "id": 10,
-        "size": "41"
+        "name": "41"
     },
     {
         "id": 11,
-        "size": "42"
+        "name": "42"
     },
     {
         "id": 12,
-        "size": "43"
+        "name": "43"
     },
     {
         "id": 13,
-        "size": "44"
+        "name": "44"
     },
     {
         "id": 14,
-        "size": "45"
+        "name": "45"
     }
 ]
         
