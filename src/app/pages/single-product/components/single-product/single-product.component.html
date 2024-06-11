@@ -31,8 +31,8 @@
 						</h4>
 
 						<span *ngIf="product.price" class="mtext-106 cl2">
-							<span *ngIf="product.price.discount != null" style="text-decoration: line-through; color: red;">${{ product.price.currentPrice }}</span>
-							{{ product.price.discount == null ? ('$' + product.price.currentPrice) : ('$' + (product.price.currentPrice * (1 - product.price.discount/100))) }}
+							<span *ngIf="product.discount != null" style="text-decoration: line-through; color: red;">${{ product.price.oldPrice }}</span>
+							${{product.price.activePrice}}
 						</span>
 						
 						<div class="p-t-33">

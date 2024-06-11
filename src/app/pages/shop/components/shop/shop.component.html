@@ -2,24 +2,7 @@
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
 			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Products
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-						Women
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-						Men
-					</button>
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-						Unisex
-					</button>
-				</div>
-
-				<div class="flex-w flex-c-m m-tb-10">
+				<div class="flex-w flex-l-m m-tb-10">
 					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
@@ -31,12 +14,14 @@
 						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
 						Search
 					</div>
-					<select class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 p-l-5" type="text" name="email" placeholder="Your Email Address">
-						<option value="0">Default sorting</option>
-						<option value="2">Sort by average rating</option>
-						<option value="3">Sort by latest</option>
-						<option value="4">Sort by price: low to high</option>
-						<option value="5">Sort by price: high to low</option>
+				</div>
+				<div class="flex-w flex-r-m m-tb-10">
+					<select (change)="sortProducts(sortProduct.value)" #sortProduct class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 p-1">
+						<option value="default">Default sorting</option>
+						<option value="rating">Sort by average rating</option>
+						<option value="latest">Sort by latest</option>
+						<option value="price-asc">Sort by price: low to high</option>
+						<option value="price-desc">Sort by price: high to low</option>
 					</select>
 				</div>
 				
@@ -62,7 +47,7 @@
 							<ul>
 								@for (category of categories; track $index) {
 									<li class="p-b-6">
-										<a (click)="filterByCategory(category.name, $index)" [ngClass]="{ 'activeCategory': selectedCategoryIndex === $index }" class="categoryFilter fistext-106 trans-04">
+										<a (click)="filterByCategory(category.name, $index)" [ngClass]="{ 'activeCategory': selectedIndexes.category === $index }" class="categoryFilter fistext-106 trans-04">
 											{{category.name}}
 										</a>
 									</li>
@@ -78,7 +63,7 @@
 							<ul>
 								@for (brand of brands; track $index) {
 									<li class="p-b-6">
-										<a (click)="filterByBrand(brand.name, $index)" [ngClass]="{ 'activeBrand': selectedBrandIndexes.includes($index) }" class="brandFilter fistext-106 trans-04">
+										<a (click)="filterByBrand(brand.name, $index)" [ngClass]="{ 'activeBrand': selectedIndexes.brands.includes($index) }" class="brandFilter fistext-106 trans-04">
 											{{brand.name}}
 										</a>
 									</li>
@@ -98,7 +83,7 @@
 											<i class="zmdi zmdi-circle"></i>
 										</span>
 	
-										<a (click)="filterByColor(color.name, $index)" [ngClass]="{ 'activeColor': selectedColorIndexes.includes($index) }" class="colorFilter fistext-106 trans-04">
+										<a (click)="filterByColor(color.name, $index)" [ngClass]="{ 'activeColor': selectedIndexes.colors.includes($index) }" class="colorFilter fistext-106 trans-04">
 											{{color.name}}
 										</a>
 									</li>
@@ -113,37 +98,37 @@
 
 							<ul>
 								<li class="p-b-6">
-									<a (click)="filterByPrice(0,0,0)" [ngClass]="{ 'activePrice': selectedPriceIndex == 0 }" class="priceFilter fistext-106 trans-04">
+									<a (click)="filterByPrice(0,0,0)" [ngClass]="{ 'activePrice': selectedIndexes.price == 0 }" class="priceFilter fistext-106 trans-04">
 										All
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a (click)="filterByPrice(1,0,50)" [ngClass]="{ 'activePrice': selectedPriceIndex == 1 }" class="priceFilter fistext-106 trans-04">
+									<a (click)="filterByPrice(1,0,50)" [ngClass]="{ 'activePrice': selectedIndexes.price == 1 }" class="priceFilter fistext-106 trans-04">
 										$0.00 - $50.00
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a (click)="filterByPrice(2,50,100)" [ngClass]="{ 'activePrice': selectedPriceIndex == 2 }" class="priceFilter fistext-106 trans-04">
+									<a (click)="filterByPrice(2,50,100)" [ngClass]="{ 'activePrice': selectedIndexes.price == 2 }" class="priceFilter fistext-106 trans-04">
 										$50.00 - $100.00
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a (click)="filterByPrice(3,100,150)" [ngClass]="{ 'activePrice': selectedPriceIndex == 3 }" class="priceFilter fistext-106 trans-04">
+									<a (click)="filterByPrice(3,100,150)" [ngClass]="{ 'activePrice': selectedIndexes.price == 3 }" class="priceFilter fistext-106 trans-04">
 										$100.00 - $150.00
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a (click)="filterByPrice(4,150,200)" [ngClass]="{ 'activePrice': selectedPriceIndex == 4 }" class="priceFilter fistext-106 trans-04">
+									<a (click)="filterByPrice(4,150,200)" [ngClass]="{ 'activePrice': selectedIndexes.price == 4 }" class="priceFilter fistext-106 trans-04">
 										$150.00 - $200.00
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a (click)="filterByPrice(5,200)" [ngClass]="{ 'activePrice': selectedPriceIndex == 5 }" class="priceFilter fistext-106 trans-04">
+									<a (click)="filterByPrice(5,200)" [ngClass]="{ 'activePrice': selectedIndexes.price == 5 }" class="priceFilter fistext-106 trans-04">
 										$200.00+
 									</a>
 								</li>
@@ -157,7 +142,7 @@
 							<div class="flex-w p-t-4 m-r--5">
 								@for (size of sizes; track $index) {
 								 <!--	<a (click)="filterByPrice(0,0,0)" [ngClass]="{ 'activePrice': selectedPriceIndex == 0 }" class="priceFilter fistext-106 trans-04"></a>-->
-									<a (click)="filterBySize(size.name,$index)" [ngClass]="{ 'activeSize': selectedSizeIndexes.includes($index)}" class="sizeFilter flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									<a (click)="filterBySize(size.name,$index)" [ngClass]="{ 'activeSize': selectedIndexes.sizes.includes($index)}" class="sizeFilter flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
 										{{size.name}}
 									</a>
 								}
@@ -168,19 +153,33 @@
 				</div>
 			</div>
 
-			<div class="row isotope-grid">
-				@for (p of products; track $index){
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-						<app-product [product]="p"></app-product>
+			
+				@if (products.length > 0) {
+					<div class="flex-w flex-sb-m p-b-52">
+						<p>Showing {{minProductIndex}} - {{maxProductIndex}} of {{productsLength}} products</p>
+					</div>
+					<div class="row isotope-grid">
+					@for (p of products; track $index){
+						<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+							<app-product [product]="p"></app-product>
+						</div>
+					}
 					</div>
 				}
-			</div>
+				@else {
+					<h3 class="text-center text-danger">There are no products that match your search.</h3>
+				}
+
 
 			<!-- Load more -->
 			<div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More
-				</a>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						@for (pageNumber of pages; track $index) {
+							<li class="page-item" [ngClass]="{ 'active': activePage === pageNumber }"><a class="page-link" (click)="pagination(pageNumber)">{{pageNumber}}</a></li>
+						}
+					</ul>
+				  </nav>
 			</div>
 		</div>
 	</div>

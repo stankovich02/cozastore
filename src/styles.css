@@ -185,23 +185,35 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   #filterWhite {
     color: white;
   }
-  .categoryFilter,.brandFilter,.colorFilter,.priceFilter,.sizeFilter{
+  .categoryFilter,.brandFilter,.colorFilter,.priceFilter,.sizeFilter,.genderFIlter{
     cursor: pointer;
   }
-  .categoryFilter:hover,.brandFilter:hover,.colorFilter:hover,.priceFilter:hover{
+  .genderFIlter{
+    border: 0px!important;
+  }
+  .categoryFilter:hover,.brandFilter:hover,.colorFilter:hover,.priceFilter:hover,.genderFIlter{
     color: #6c7ae0!important;
   }
   .sizeFilter:hover{
     background-color: #6c7ae0!important;
     color: white!important;
   }
-  .activeCategory,.activeBrand,.activeColor,.activePrice{
+  .activeCategory,.activeBrand,.activeColor,.activePrice,.activeGender{
     font-weight: bold;
     color: #6c7ae0!important;
+  }
+  .activeGender{
+    border: 0px!important;
   }
   .activeSize{
     color: white!important;
     background-color: #6c7ae0!important;
+  }
+  .page-item{
+    cursor: pointer!important;
+  }
+  .page-item.active:hover{
+    color: white!important;
   }
   /*//////////////////////////////////////////////////////////////////
   [ BUTTON BACK TO TOP ]*/
