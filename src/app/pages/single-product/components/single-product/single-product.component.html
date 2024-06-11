@@ -71,8 +71,8 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="flex-w flex-r-m p-b-10">
+							@if(product.inStock){
 								<div class="size-204 flex-w flex-m respon6-next">
 									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -90,7 +90,12 @@
 										Add to cart
 									</button>
 								</div>
-							</div>	
+							}
+							@else {
+								<p class="text-center text-danger">{{product.name}} is currently out of stock.</p>
+							}
+						</div>	
+							
 						</div>
 
 						<!--  -->
@@ -115,7 +120,7 @@
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews ({{product.reviews.length}})</a>
 						</li>
 					</ul>
 
@@ -136,27 +141,33 @@
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<div class="p-b-30 m-lr-15-sm">
 										<!-- Review -->
-										@for (review of product.reviews; track $index) {
-											<div class="flex-w flex-t p-b-68">
-												<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-													<img src="/assets/images/avatar-01.jpg" alt="AVATAR">
-												</div>
-	
-												<div class="size-207">
-													<div class="flex-w flex-sb-m p-b-17">
-														<span class="mtext-107 cl2 p-r-20">
-															{{review.user}}
-														</span>
-	
-														<span [innerHTML]="getProductRating(review.rating)" class="fs-18 cl11">
-														</span>
+										 @if(product.reviews.length > 0)
+										 {
+											@for (review of product.reviews; track $index) {
+												<div class="flex-w flex-t p-b-68">
+													<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+														<img src="/assets/images/avatar-01.jpg" alt="AVATAR">
 													</div>
-	
-													<p class="stext-102 cl6">
-														{{review.comment}}
-													</p>
+		
+													<div class="size-207">
+														<div class="flex-w flex-sb-m p-b-17">
+															<span class="mtext-107 cl2 p-r-20">
+																{{review.user}}
+															</span>
+		
+															<span [innerHTML]="getProductRating(review.rating)" class="fs-18 cl11">
+															</span>
+														</div>
+		
+														<p class="stext-102 cl6">
+															{{review.comment}}
+														</p>
+													</div>
 												</div>
-											</div>
+											}
+										 }
+										@else {
+											<h3 class="text-center">{{product.name}} has no reviews yet.</h3>
 										}
 										
 										
@@ -231,38 +242,9 @@
 
 			<div *ngIf="relatedProducts.length > 0;else emptyRelatedProducts" class="wrap-slick2">
 				<div class="slick2">
-					@for (product of relatedProducts; track $index) {
+					@for (p of relatedProducts; track $index){
 						<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-pic hov-img0">
-									<img *ngIf="product.images" src="/assets/images/products/{{product.images[0]}}.jpg" alt="IMG-PRODUCT">
-	
-									<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-										Add to Cart
-									</a>
-								</div>
-	
-								<div class="block2-txt flex-w flex-t p-t-14">
-									<div class="block2-txt-child1 flex-col-l ">
-										<a routerLink="/products/{{product.id}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-											{{product.name}}
-										</a>
-	
-										<span *ngIf="product.price" class="stext-105 cl3">
-											<span *ngIf="product.price.discount != null" style="text-decoration: line-through; color: red;">${{ product.price.currentPrice }}</span>
-											  {{ product.price.discount == null ? ('$' + product.price.currentPrice) : ('$' + (product.price.currentPrice * (1 - product.price.discount/100))) }}
-										</span>
-									</div>
-	
-									<div class="block2-txt-child2 flex-r p-t-3">
-										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-											<img class="icon-heart1 dis-block trans-04" src="/assets/images/icons/icon-heart-01.png" alt="ICON">
-											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/assets/images/icons/icon-heart-02.png" alt="ICON">
-										</a>
-									</div>
-								</div>
-							</div>
+							<app-product [product]="p"></app-product>
 						</div>
 					}
 					
