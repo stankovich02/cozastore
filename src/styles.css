@@ -215,6 +215,9 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   .page-item.active:hover{
     color: white!important;
   }
+  .addToWishlist{
+    cursor: pointer!important;
+  }
   /*//////////////////////////////////////////////////////////////////
   [ BUTTON BACK TO TOP ]*/
   .btn-back-to-top {
@@ -2862,7 +2865,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   
   /*---------------------------------------------*/
   .js-addedwish-detail {
-    color: #6c7ae0;
+    color: #6c7ae0!important;
   }
   
   /*---------------------------------------------*/

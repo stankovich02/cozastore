@@ -101,7 +101,7 @@
 						<!--  -->
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div class="flex-m p-r-10 m-r-11">
-								<a href="#" class="fs-30 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+								<a (click)="addProductTowishlist(product.id,product.name)" [ngClass]="{ 'js-addedwish-detail': isProductInWishlist, 'js-addwish-detail': !isProductInWishlist }" class="fs-30 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 addToWishlist tooltip100" data-tooltip="Add to Wishlist">
 									<i class="zmdi zmdi-favorite"></i>
 								</a>
 							</div>
@@ -120,7 +120,7 @@
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews ({{product.reviews.length}})</a>
+							<a *ngIf="product && product.reviews" class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews ({{ product.reviews.length }})</a>
 						</li>
 					</ul>
 
@@ -141,34 +141,37 @@
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<div class="p-b-30 m-lr-15-sm">
 										<!-- Review -->
-										 @if(product.reviews.length > 0)
-										 {
-											@for (review of product.reviews; track $index) {
-												<div class="flex-w flex-t p-b-68">
-													<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-														<img src="/assets/images/{{review.avatar}}.jpg" alt="AVATAR">
-													</div>
-		
-													<div class="size-207">
-														<div class="flex-w flex-sb-m p-b-17">
-															<span class="mtext-107 cl2 p-r-20">
-																{{review.user}}
-															</span>
-		
-															<span [innerHTML]="getProductRating(review.rating)" class="fs-18 cl11">
-															</span>
-														</div>
-		
-														<p class="stext-102 cl6">
-															{{review.comment}}
-														</p>
-													</div>
-												</div>
+										 @if(product.reviews){
+											@if(product.reviews.length > 0)
+											{
+											   @for (review of product.reviews; track $index) {
+												   <div class="flex-w flex-t p-b-68">
+													   <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+														   <img src="/assets/images/{{review.avatar}}.jpg" alt="AVATAR">
+													   </div>
+		   
+													   <div class="size-207">
+														   <div class="flex-w flex-sb-m p-b-17">
+															   <span class="mtext-107 cl2 p-r-20">
+																   {{review.user}}
+															   </span>
+		   
+															   <span [innerHTML]="getProductRating(review.rating)" class="fs-18 cl11">
+															   </span>
+														   </div>
+		   
+														   <p class="stext-102 cl6">
+															   {{review.comment}}
+														   </p>
+													   </div>
+												   </div>
+											   }
 											}
+										   @else {
+											   <h3 class="text-center">{{product.name}} has no reviews yet.</h3>
+										   }
+										   
 										 }
-										@else {
-											<h3 class="text-center">{{product.name}} has no reviews yet.</h3>
-										}
 										
 										
 										<!-- Add review -->

@@ -1,8 +1,10 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject,Output, EventEmitter} from '@angular/core';
 import { NamedEntity, Product } from '../../../../core/models/object-model';
 import { HttpClient } from '@angular/common/http';
 import { ProductsServiceImpl } from '../../../../shared/services/products.service.impl';
 import { IProductService, PRODUCT_SERVICE_TOKEN } from '../../../../shared/interfaces/iproduct-service.inteface';
+
+
 
 
 @Component({
@@ -37,7 +39,7 @@ export class ShopComponent implements OnInit{
     category : -1,
     price : 0,
 
-  }
+  };
   private static readonly perPage = 8;
   protected minProductIndex : number = 1;
   protected maxProductIndex : number = 0;
@@ -53,7 +55,6 @@ export class ShopComponent implements OnInit{
     this.loadProducts();
     this.loadFilters();
   }
-
   loadProducts(){
     this.productService.getProducts().subscribe((data)=>{
       this.products = data;

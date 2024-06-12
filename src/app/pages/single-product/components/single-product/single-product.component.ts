@@ -1,9 +1,10 @@
-import { Component, OnInit, Renderer2, Inject } from '@angular/core';
+import { Component, OnInit, Renderer2, Inject, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ProductsServiceImpl } from '../../../../shared/services/products.service.impl';
 import { Product } from '../../../../core/models/object-model';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { WishlistServiceImpl } from '../../../../shared/services/wishlist.service.impl';
 
 @Component({
   selector: 'app-single-product',
@@ -14,11 +15,15 @@ export class SingleProductComponent implements OnInit{
   private productId: string = '';
   protected product : Product = {} as Product;
   protected relatedProducts : Product[] = [];
-  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private productService : ProductsServiceImpl, private route: ActivatedRoute,private router: Router) {
+  protected isProductInWishlist: boolean;
+  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private productService : ProductsServiceImpl, private route: ActivatedRoute,private router: Router,private wishlistService : WishlistServiceImpl) {
    
-  };
+  }
+;
   ngOnInit(): void {
     this.productId = this.route.snapshot.paramMap.get('id')!;
+    this.isProductInWishlist = this.wishlistService.isProductInWishlist(parseInt(this.productId));
+    
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
@@ -67,7 +72,6 @@ export class SingleProductComponent implements OnInit{
     
     }, 200);
   }
-
   loadScript(src: string): void {
     const script = this.renderer.createElement('script');
     script.type = 'text/javascript';
@@ -75,7 +79,6 @@ export class SingleProductComponent implements OnInit{
     script.src = src;
     this.renderer.appendChild(this.document.body, script);
   }
-
   removeExistingScripts(): void {
     const existingScripts = this.document.querySelectorAll('.myScripts');
     existingScripts.forEach(script => {
@@ -86,6 +89,12 @@ export class SingleProductComponent implements OnInit{
     this.router.navigateByUrl('/products/' + this.productId, { skipLocationChange: true }).then(() => {
       this.router.navigate(['/products/' + this.productId]);
     });
+  }
+  addProductTowishlist(productId: number,name : string): void {
+    this.wishlistService.addProductToWishlist(productId,name);
+    let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    this.isProductInWishlist = this.wishlistService.isProductInWishlist(parseInt(this.productId));
+    this.wishlistService.updateNumberOfProductsInWishlist(wishlist.length);
   }
 
 }

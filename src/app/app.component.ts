@@ -152,44 +152,6 @@ export class AppComponent implements OnInit {
         let script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.className = 'myScripts';
-        script.innerHTML = `$('.js-addwish-b2').on('click', function(e){
-          e.preventDefault();
-        });
-    
-        $('.js-addwish-b2').each(function(){
-          var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-          $(this).on('click', function(){
-            swal(nameProduct, "is added to wishlist !", "success");
-    
-            $(this).addClass('js-addedwish-b2');
-            $(this).off('click');
-          });
-        });
-    
-        $('.js-addwish-detail').each(function(){
-          var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-    
-          $(this).on('click', function(){
-            swal(nameProduct, "is added to wishlist !", "success");
-    
-            $(this).addClass('js-addedwish-detail');
-            $(this).off('click');
-          });
-        });
-    
-    
-        $('.js-addcart-detail').each(function(){
-          var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-          $(this).on('click', function(){
-            swal(nameProduct, "is added to cart !", "success");
-          });
-        });`;
-        this.renderer.appendChild(this.document.body, script);
-      }, 500);
-      setTimeout(() => {
-        let script = this.renderer.createElement('script');
-        script.type = 'text/javascript';
-        script.className = 'myScripts';
         script.innerHTML = `$('.js-pscroll').each(function(){
           $(this).css('position','relative');
           $(this).css('overflow','hidden');
@@ -206,5 +168,6 @@ export class AppComponent implements OnInit {
         this.renderer.appendChild(this.document.body, script);
       }, 500);
   }
- 
+
+
 }
