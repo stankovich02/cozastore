@@ -22,14 +22,14 @@
                 "rating": 5,
                 "comment": "This is a great jacket",
                 "user": "John Doe",
-                "avatar": "https://via.placeholder.com/150"
+                "avatar": "avatar-01"
             },
             {
                 "id": 2,
                 "rating": 3,
                 "comment": "This is a good jacket",
                 "user": "Jane Doe",
-                "avatar": "https://via.placeholder.com/150"
+                "avatar": "avatar-01"
             }
         ],
         "averageRating": 4.0
@@ -171,8 +171,16 @@
         "gender": "Unisex",
         "inStock": true,
         "images": ["white_sneakers_1", "white_sneakers_2", "white_sneakers_3"],
-        "reviews": [],
-        "averageRating": 0
+        "reviews": [
+          {
+            "id": 3,
+            "rating": 2,
+            "comment": "These sneakers are not comfortable at all.",
+            "user": "Ana Smith",
+            "avatar": "avatar-01"
+        }
+        ],
+        "averageRating": 2
       },
       {
         "id": 9,

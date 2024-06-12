@@ -4,11 +4,12 @@ import { Product } from '../../core/models/object-model';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { IProductService } from '../interfaces/iproduct-service.inteface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class ProductsServiceImpl implements IProductService  {
   constructor(private http : HttpClient, private router : Router){
   }
   getProducts() : Observable<Product[]>{

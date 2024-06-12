@@ -1,4 +1,4 @@
-export class Product {
+export interface Product {
     id: number;
     name: string;
     category: string;
@@ -17,11 +17,11 @@ export class Product {
     reviews: Review[];
     averageRating: number;
 }
-export class NamedEntity{
+export interface NamedEntity{
     id: number;
     name: string;
 }
-export class Review{
+export interface Review{
     id: number;
     rating: number;
     comment: string;

@@ -52,15 +52,18 @@
 
 					<form>
 						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="Enter your email...">
+							<input [(ngModel)]="email" class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="Enter your email...">
 							<div class="focus-input1 trans-04"></div>
 						</div>
-
+						@if(error){
+						<p class="text-danger mt-2">{{error}}</p>
+						}
 						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
-							</button>
+							<input type="button" (click)="submitNewsletter()" class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04" value="Subscribe">
 						</div>
+						@if(validForm){
+						<p class="text-success mt-3">Subscribed successfully.</p>
+						}
 					</form>
 				</div>
 			</div>

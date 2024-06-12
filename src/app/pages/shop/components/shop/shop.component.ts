@@ -1,16 +1,19 @@
-import { Component, OnInit} from '@angular/core';
-import { ProductsService } from '../../../../shared/services/products.service';
+import { Component, OnInit, Inject} from '@angular/core';
 import { NamedEntity, Product } from '../../../../core/models/object-model';
 import { HttpClient } from '@angular/common/http';
+import { ProductsServiceImpl } from '../../../../shared/services/products.service.impl';
+import { IProductService, PRODUCT_SERVICE_TOKEN } from '../../../../shared/interfaces/iproduct-service.inteface';
+
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrl: './shop.component.css'
+  styleUrl: './shop.component.css',
+  providers: [{provide: PRODUCT_SERVICE_TOKEN, useClass: ProductsServiceImpl}]
 })
 export class ShopComponent implements OnInit{
   protected products : Product[] = [];
-  protected originalProducts : Product[];
+  protected originalProducts : Product[] = [];
   protected colors : NamedEntity[];
   protected sizes : NamedEntity[];
   protected brands : NamedEntity[];
@@ -35,6 +38,7 @@ export class ShopComponent implements OnInit{
     price : 0,
 
   }
+  private static readonly perPage = 8;
   protected minProductIndex : number = 1;
   protected maxProductIndex : number = 0;
   protected productsLength : number = 0;
@@ -42,7 +46,7 @@ export class ShopComponent implements OnInit{
   protected activePage : number = 1;
   private baseUrl = 'http://localhost:4200/assets/data/';
 
- constructor(private productService : ProductsService,private http : HttpClient){
+ constructor(@Inject(PRODUCT_SERVICE_TOKEN) private productService: IProductService,  private http : HttpClient){
   
  }
   ngOnInit(): void {
@@ -53,13 +57,13 @@ export class ShopComponent implements OnInit{
   loadProducts(){
     this.productService.getProducts().subscribe((data)=>{
       this.products = data;
-      this.maxProductIndex = this.products.slice((this.activePage-1)*8,this.activePage*8).length;
+      this.maxProductIndex = this.products.slice((this.activePage-1)*ShopComponent.perPage,this.activePage*ShopComponent.perPage).length;
       this.productsLength = this.products.length;
       this.originalProducts = data;
-      for(let i = 1; i <= Math.ceil(this.products.length/8); i++){
+      for(let i = 1; i <= Math.ceil(this.products.length/ShopComponent.perPage); i++){
         this.pages.push(i);
       }
-      this.products = this.products.slice(0,8);
+      this.products = this.products.slice(0,ShopComponent.perPage);
     });
   }
   loadFilters(){
@@ -201,12 +205,12 @@ export class ShopComponent implements OnInit{
       return 0;
     });
     this.productsLength = this.products.length;
-    this.minProductIndex = (this.activePage-1)*8 + 1;
-    this.maxProductIndex = this.products.slice((this.activePage-1)*8,this.activePage*8).length + (this.activePage-1)*8;
+    this.minProductIndex = (this.activePage-1)*ShopComponent.perPage + 1;
+    this.maxProductIndex = this.products.slice((this.activePage-1)*ShopComponent.perPage,this.activePage*ShopComponent.perPage).length + (this.activePage-1)*ShopComponent.perPage;
     this.pages = [];
-    for(let i = 1; i <= Math.ceil(this.products.length/8); i++){
+    for(let i = 1; i <= Math.ceil(this.products.length/ShopComponent.perPage); i++){
       this.pages.push(i);
     }
-    this.products = this.products.slice((this.activePage-1)*8,this.activePage*8);
+    this.products = this.products.slice((this.activePage-1)*ShopComponent.perPage,this.activePage*ShopComponent.perPage);
   } 
 }

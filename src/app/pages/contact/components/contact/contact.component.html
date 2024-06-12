@@ -11,23 +11,30 @@
     <div class="container">
         <div class="flex-w flex-tr">
             <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-                <form>
+                <form method="" action="">
                     <h4 class="mtext-105 cl2 txt-center p-b-30">
                         Send Us A Message
                     </h4>
 
-                    <div class="bor8 m-b-20 how-pos4-parent">
-                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
+                    <div class="bor8 m-b-10 how-pos4-parent">
+                        <input [(ngModel)]="email" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
                         <img class="how-pos4 pointer-none" src="assets/images/icons/icon-email.png" alt="ICON">
+                       
                     </div>
-
-                    <div class="bor8 m-b-30">
-                        <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
+                    @if(emailError){
+                    <p class="text-danger mb-4">{{emailError}}</p>
+                    }
+                    <div class="bor8 m-b-10">
+                        <textarea [(ngModel)]="message" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
                     </div>
-
-                    <button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-                        Submit
-                    </button>
+                    @if(messageError){
+                        <p class="text-danger mb-4">{{messageError}}</p>
+                        }
+                    <input type="button" (click)="submitForm()" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" value="Submit">
+                    @if(validForm){
+                        <p class="text-success mt-3">Form submitted successfully.</p>
+                    }
+                   
                 </form>
             </div>
 
@@ -43,7 +50,7 @@
                         </span>
 
                         <p class="stext-115 cl6 size-213 p-t-18">
-                            Fashion Center 8th floor, 379 Hudson St, New York, NY 10018 US
+                            Knez Mihajlova 54
                         </p>
                     </div>
                 </div>
@@ -59,7 +66,7 @@
                         </span>
 
                         <p class="stext-115 cl1 size-213 p-t-18">
-                            +1 800 1236879
+                            011 123 4567
                         </p>
                     </div>
                 </div>
@@ -75,7 +82,7 @@
                         </span>
 
                         <p class="stext-115 cl1 size-213 p-t-18">
-                            contactexample.com
+                            contact&commat;cozastore.com
                         </p>
                     </div>
                 </div>

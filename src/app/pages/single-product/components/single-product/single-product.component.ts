@@ -1,6 +1,6 @@
 import { Component, OnInit, Renderer2, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { ProductsService } from '../../../../shared/services/products.service';
+import { ProductsServiceImpl } from '../../../../shared/services/products.service.impl';
 import { Product } from '../../../../core/models/object-model';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -14,7 +14,7 @@ export class SingleProductComponent implements OnInit{
   private productId: string = '';
   protected product : Product = {} as Product;
   protected relatedProducts : Product[] = [];
-  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private productService : ProductsService, private route: ActivatedRoute,private router: Router) {
+  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private productService : ProductsServiceImpl, private route: ActivatedRoute,private router: Router) {
    
   };
   ngOnInit(): void {

@@ -1,9 +1,7 @@
 import { Component, OnInit, Renderer2, Inject, AfterViewInit,ChangeDetectorRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { ProductsService } from '../../../../shared/services/products.service';
+import { ProductsServiceImpl } from '../../../../shared/services/products.service.impl';
 import { Product } from '../../../../core/models/object-model';
-import imagesLoaded from 'imagesloaded';
-declare var Isotope: any;
 
 @Component({
   selector: 'app-home',
@@ -12,7 +10,7 @@ declare var Isotope: any;
 })
 export class HomeComponent implements OnInit{
   protected latestProducts : Product[] = [];
-  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private productService : ProductsService,private cdr: ChangeDetectorRef) {}
+  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private productService : ProductsServiceImpl) {}
  ngOnInit(): void {
   this.loadScripts();
   this.loadLatestProducts();
