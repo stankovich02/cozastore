@@ -28,7 +28,21 @@ export interface Review{
     user: string;
     avatar: string;
 }
-export interface CartProduct{
+export interface CartProductLS{
     id: number;
     quantity: number;
+}
+export class CartProduct{
+    id: number;
+    quantity: number;
+    name: string;
+    image: string;
+    price: number;
+    constructor(id: number, quantity: number, name: string, image: string, price: number){
+        this.id = id;
+        this.quantity = quantity;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+    }
 }

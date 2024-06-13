@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ICartService } from '../interfaces/icart-service';
-import { CartProduct, Product } from '../../core/models/object-model';
+import { CartProduct, CartProductLS, Product } from '../../core/models/object-model';
 import Swal from 'sweetalert2';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartServiceImpl implements ICartService{
-  protected cart: CartProduct[] = [];
+  protected cart: CartProductLS[] = [];
   private numberOfProductsInCartSubject = new BehaviorSubject<number>(0);
   numberOfProductsInCart$ = this.numberOfProductsInCartSubject.asObservable();
 
@@ -37,8 +37,27 @@ export class CartServiceImpl implements ICartService{
     });
     return exists;
   }
-  getProductsFromCart(): Product[] {
-    throw new Error('Method not implemented.');
+  getProductsFromCart(): Observable<CartProduct[]> {
+    return this.http.get<Product[]>('/assets/data/products.json').pipe(
+      map((products) => {
+        let array: CartProduct[] = [];
+        products.forEach((product) => {
+          this.cart.forEach((cartProduct) => {
+            if (cartProduct.id === product.id) {
+              let obj = new CartProduct(
+                product.id,
+                cartProduct.quantity,
+                product.name,
+                product.images[0],
+                product.price.activePrice,
+              );
+              array.push(obj);
+            }
+          });
+        });
+        return array;
+      })
+    );
   }
   updateNumberOfProductsInCart(num: number): void {
     this.numberOfProductsInCartSubject.next(num);
