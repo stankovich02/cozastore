@@ -28,3 +28,7 @@ export interface Review{
     user: string;
     avatar: string;
 }
+export interface CartProduct{
+    id: number;
+    quantity: number;
+}

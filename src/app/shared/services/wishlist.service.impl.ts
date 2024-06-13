@@ -17,7 +17,7 @@ export class WishlistServiceImpl implements IWishlistService {
       this.numberOfProductsInWishlistSubject.next(Number(this.wishlist.length));
     }
    }
-  getProductsFromWishlist(): Observable<Product>[] {
+  getProductsFromWishlist(): Product[] {
     let array = [];   
       this.http.get<Product[]>('/assets/data/products.json').subscribe((products) => {
         products.forEach((product) => {

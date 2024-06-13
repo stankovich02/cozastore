@@ -6,6 +6,6 @@ export interface IWishlistService {
     addProductToWishlist(productId: number, name: string): void;
     removeProductFromWishlist(productId: number): void;
     isProductInWishlist(productId: number): boolean;
-    getProductsFromWishlist(): Observable<Product>[];
+    getProductsFromWishlist(): Product[];
 }
 export const WISHLIST_SERVICE_TOKEN = new InjectionToken<IWishlistService>('IWishlistService');

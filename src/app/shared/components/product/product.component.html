@@ -4,7 +4,7 @@
         <img src="assets/images/products/{{product.images[0]}}.jpg" alt="{{product.name}}">
 
         @if(product.inStock){
-            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+            <a (click)="addProductToCart(product.id,1,product.name)" class="addToCart block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                 Add to Cart
             </a>
         }

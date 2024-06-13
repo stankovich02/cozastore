@@ -1,1 +1,18 @@
-<p>wishlist works!</p>
+<div class="bg0 m-t-23 p-b-140">
+    <div class="container">
+        @if(products){
+            @if (products.length > 0) {
+                <div class="row isotope-grid">
+                @for (p of products; track $index){
+                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                        <app-product [product]="p"></app-product>
+                    </div>
+                }
+                </div>
+            }
+            @else {
+                <h2 class="text-center text-info">Your wishlist is empty.</h2>
+            }
+        }
+    </div>
+</div>

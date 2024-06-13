@@ -215,9 +215,14 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   .page-item.active:hover{
     color: white!important;
   }
-  .addToWishlist{
+  .addToWishlist,.addToCart{
     cursor: pointer!important;
   }
+.addToCart:hover{
+  border-color: #222!important;
+    background-color: #222!important;;
+    color: #fff!important;
+}
   /*//////////////////////////////////////////////////////////////////
   [ BUTTON BACK TO TOP ]*/
   .btn-back-to-top {

@@ -5,6 +5,7 @@ import { Product } from '../../../../core/models/object-model';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { WishlistServiceImpl } from '../../../../shared/services/wishlist.service.impl';
+import { CartServiceImpl } from '../../../../shared/services/cart.service.impl';
 
 @Component({
   selector: 'app-single-product',
@@ -13,10 +14,11 @@ import { WishlistServiceImpl } from '../../../../shared/services/wishlist.servic
 })
 export class SingleProductComponent implements OnInit{
   private productId: string = '';
+  protected quantity: number = 1;
   protected product : Product = {} as Product;
   protected relatedProducts : Product[] = [];
   protected isProductInWishlist: boolean;
-  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private productService : ProductsServiceImpl, private route: ActivatedRoute,private router: Router,private wishlistService : WishlistServiceImpl) {
+  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private productService : ProductsServiceImpl, private route: ActivatedRoute,private router: Router,private wishlistService : WishlistServiceImpl,private cartService : CartServiceImpl) {
    
   }
 ;
@@ -95,6 +97,12 @@ export class SingleProductComponent implements OnInit{
     let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
     this.isProductInWishlist = this.wishlistService.isProductInWishlist(parseInt(this.productId));
     this.wishlistService.updateNumberOfProductsInWishlist(wishlist.length);
+  }
+  addProductToCart(productId: number,name: string): void {
+    this.cartService.addProductToCart(productId,this.quantity,name);
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    this.isProductInWishlist = this.cartService.isProductInCart(parseInt(this.productId));
+    this.cartService.updateNumberOfProductsInCart(cart.length);
   }
 
 }
