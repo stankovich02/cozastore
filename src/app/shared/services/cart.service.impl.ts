@@ -59,6 +59,30 @@ export class CartServiceImpl implements ICartService{
       })
     );
   }
+  changeProductQuantity(productId: number, quantity: number): void {
+    if(quantity < 1) {
+      Swal.fire("Heyy!!","Quantity must be greather than 0!", "error");
+      return;
+    }
+    let cartLS = JSON.parse(localStorage.getItem('cart') || '[]');
+      this.cart.forEach((product) => {
+        if (product.id === productId) {
+          product.quantity = Number(quantity);
+        }
+      });
+      cartLS.forEach((product) => {
+        if (product.id === productId) {
+          product.quantity = Number(quantity);
+        }
+      });
+      localStorage.setItem('cart', JSON.stringify(cartLS));
+  }
+  removeProductFromCart(productId: number,name: string): void {
+    this.cart = this.cart.filter(product => product.id !== productId);
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.updateNumberOfProductsInCart(this.cart.length);
+    Swal.fire(name, "has been removed from the cart.", "success");
+  }
   updateNumberOfProductsInCart(num: number): void {
     this.numberOfProductsInCartSubject.next(num);
   }
