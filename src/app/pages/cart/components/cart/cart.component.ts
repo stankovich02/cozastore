@@ -16,10 +16,9 @@ export class CartComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    this.cartService.getProductsFromCart().subscribe((products) => {
-      this.products = products;
+      this.products = this.cartService.cart;
       this.calculateTotalPrice();
-    });
+
 
     this.cartService.numberOfProductsInCart$.subscribe(() => {
         this.calculateTotalPrice();
@@ -27,10 +26,8 @@ export class CartComponent implements OnInit{
   }
   changeProductQuantity(productId: number, quantity: string): void {
     this.cartService.changeProductQuantity(productId, Number(quantity));
-    this.cartService.getProductsFromCart().subscribe((products) => {
-      this.products = products;
+      this.products = this.cartService.cart;
       this.calculateTotalPrice();
-    });
     }
   calculateTotalPrice(): void {
     this.totalPrice = 0;

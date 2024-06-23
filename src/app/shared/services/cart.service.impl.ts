@@ -1,32 +1,55 @@
 import { Injectable } from '@angular/core';
 import { ICartService } from '../interfaces/icart-service';
-import { CartProduct, CartProductLS, Product } from '../../core/models/object-model';
+import { CartProduct, Product } from '../../core/models/object-model';
 import Swal from 'sweetalert2';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartServiceImpl implements ICartService{
-  protected cart: CartProductLS[] = [];
+  public cart: CartProduct[] = [];
   private numberOfProductsInCartSubject = new BehaviorSubject<number>(0);
   numberOfProductsInCart$ = this.numberOfProductsInCartSubject.asObservable();
-
+  private baseUrl = 'http://localhost:5001/api/carts';
   constructor(private http : HttpClient) 
   {
-    this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    this.numberOfProductsInCartSubject.next(Number(this.cart.length));
+    if(document.cookie.includes('jwt')){
+      this.getProductsFromCart().subscribe((cart : CartProduct[]) => {
+        this.cart = cart;
+        this.numberOfProductsInCartSubject.next(Number(this.cart.length));
+      });
+      this.numberOfProductsInCartSubject.next(Number(this.cart.length));
+     }
    }
   addProductToCart(productId: number, quantity: number, name: string): void {
-    this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    if (!this.isProductInCart(productId)) {
-      this.cart.push({id: productId, quantity: quantity});
-      localStorage.setItem('cart', JSON.stringify(this.cart));
-      Swal.fire(name,"added to cart!", "success");
-      return;
-    }
-    Swal.fire(name,"is already in cart!", "info");
+    this.http.post<HttpResponse<any>>(this.baseUrl, 
+      {
+        productId: productId,
+        quantity: quantity
+      }, 
+      { observe: 'response' }
+    ).subscribe(
+      response => {
+        if (response.status === 201) {
+          Swal.fire(name, 'is added to cart!', 'success');
+          this.getProductsFromCart().subscribe((cart : CartProduct[]) => {
+            this.cart = cart;
+            this.numberOfProductsInCartSubject.next(Number(this.cart.length));
+          });
+        }
+      },
+      error => {
+        if(error.status === 409){
+          Swal.fire("Hey!", error.error.error, 'info');
+        }
+        if(error.status == 422){
+          console.log(error);
+          Swal.fire("Oops!",  error.error[0].error, 'error');
+        }
+      }
+    );
   }
   isProductInCart(productId: number): boolean {
     let exists = false;
@@ -38,44 +61,36 @@ export class CartServiceImpl implements ICartService{
     return exists;
   }
   getProductsFromCart(): Observable<CartProduct[]> {
-    return this.http.get<Product[]>('/assets/data/products.json').pipe(
-      map((products) => {
-        let array: CartProduct[] = [];
-        products.forEach((product) => {
-          this.cart.forEach((cartProduct) => {
-            if (cartProduct.id === product.id) {
-              let obj = new CartProduct(
-                product.id,
-                cartProduct.quantity,
-                product.name,
-                product.images[0],
-                product.price.activePrice,
-              );
-              array.push(obj);
-            }
-          });
-        });
-        return array;
-      })
-    );
-  }
+    return this.http.get<CartProduct[]>(this.baseUrl);
+}
   changeProductQuantity(productId: number, quantity: number): void {
-    if(quantity < 1) {
-      Swal.fire("Heyy!!","Quantity must be greather than 0!", "error");
-      return;
-    }
-    let cartLS = JSON.parse(localStorage.getItem('cart') || '[]');
-      this.cart.forEach((product) => {
-        if (product.id === productId) {
-          product.quantity = Number(quantity);
+     this.http.put<HttpResponse<any>>(this.baseUrl, 
+      {
+        productId: productId,
+        quantity: quantity
+      }, 
+      { observe: 'response' }
+    ).subscribe(
+      response => {
+        if (response.status === 204) {
+          this.getProductsFromCart().subscribe((cart : CartProduct[]) => {
+            this.cart = cart;
+          });
         }
-      });
-      cartLS.forEach((product) => {
-        if (product.id === productId) {
-          product.quantity = Number(quantity);
+      },
+      error => {
+        if(error.status === 404){
+          Swal.fire("Oops!", "Product doesn't exist", 'error');
         }
-      });
-      localStorage.setItem('cart', JSON.stringify(cartLS));
+        if(error.status === 409){
+          Swal.fire("Hey!", error.error.error, 'info');
+        }
+        if(error.status == 422){
+          console.log(error);
+          Swal.fire("Oops!",  error.error[0].error, 'error');
+        }
+      }
+    );
   }
   removeProductFromCart(productId: number,name: string): void {
     this.cart = this.cart.filter(product => product.id !== productId);

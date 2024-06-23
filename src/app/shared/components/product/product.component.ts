@@ -1,4 +1,4 @@
-import { Component, Inject, Input,Output,EventEmitter, ViewEncapsulation  } from '@angular/core';
+import { Component, Inject, Input,Output,EventEmitter, ViewEncapsulation, OnInit  } from '@angular/core';
 import { CartProduct, Product } from '../../../core/models/object-model';
 import { WishlistServiceImpl } from '../../services/wishlist.service.impl';
 import { CartServiceImpl } from '../../services/cart.service.impl';
@@ -12,22 +12,28 @@ import { CartServiceImpl } from '../../services/cart.service.impl';
   styleUrl: './product.component.css',
   encapsulation: ViewEncapsulation.None,
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit{
 
-  protected wishlist: number[] = [];
+  protected isProductInWishlist : boolean = false;
   constructor(private wishlistService : WishlistServiceImpl, private cartService : CartServiceImpl) {
-    this.wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    
+  }
+  ngOnInit(): void {
+    this.isProductInWishlist = this.wishlistService.isProductInWishlist(this.product.id);
   }
   @Input() product : Product;
   
   addProductTowishlist(productId: number,name : string): void {
+    if(this.isProductInWishlist){
+      this.wishlistService.removeProductFromWishlist(productId,name);
+      this.isProductInWishlist = false;
+      return;
+    }
     this.wishlistService.addProductToWishlist(productId,name);
-    this.wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-    this.wishlistService.updateNumberOfProductsInWishlist(this.wishlist.length);
+    this.isProductInWishlist = true;
+    
   }
   addProductToCart(productId: number,quantity: number,name: string): void {
     this.cartService.addProductToCart(productId,quantity,name);
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    this.cartService.updateNumberOfProductsInCart(cart.length);
   }
 }

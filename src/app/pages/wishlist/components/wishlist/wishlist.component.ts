@@ -10,11 +10,13 @@ import { Product } from '../../../../core/models/object-model';
 export class WishlistComponent implements OnInit{
   protected products : Product[] = [];
   constructor(private wishlistService : WishlistServiceImpl) {  
+    this.wishlistService.getProductsFromWishlist().subscribe((wishlist) => {
+      this.products = wishlist;
+    });
   }
   ngOnInit(): void {
-    this.products = this.wishlistService.getProductsFromWishlist();
     this.wishlistService.numberOfProductsInWishlist$.subscribe(() => {
-      this.products = this.wishlistService.getProductsFromWishlist();
+     this.products = this.wishlistService.wishlist;
   });
   }
 }

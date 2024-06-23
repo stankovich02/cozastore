@@ -36,23 +36,12 @@ export interface Review{
     user: string;
     avatar: string;
 }
-export interface CartProductLS{
-    id: number;
-    quantity: number;
-}
-export class CartProduct{
+export interface CartProduct{
     id: number;
     quantity: number;
     name: string;
     image: string;
     price: number;
-    constructor(id: number, quantity: number, name: string, image: string, price: number){
-        this.id = id;
-        this.quantity = quantity;
-        this.name = name;
-        this.image = image;
-        this.price = price;
-    }
 }
 export interface ProductAPI{
     data: Product[];

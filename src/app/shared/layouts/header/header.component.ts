@@ -4,6 +4,7 @@ import { NavigationService } from '../../services/navigation.service';
 import { WishlistServiceImpl } from '../../services/wishlist.service.impl';
 import { CartServiceImpl } from '../../services/cart.service.impl';
 import { AuthService } from '../../services/auth.service';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit {
     private navigationService: NavigationService,
     private wishlistService: WishlistServiceImpl,
     private cartService: CartServiceImpl,
-    private authService: AuthService
+    private authService: AuthService,
+    private sharedService: SharedService
   ) {
     this.router.events.subscribe(() => {
       if (this.router.url === '/home' || this.router.url === '/') {
@@ -31,9 +33,6 @@ export class HeaderComponent implements OnInit {
         this.headerClass = 'header-v4';
       }
     });
-
-    this.numberOfProductsInWishlist = JSON.parse(localStorage.getItem('wishlist') || '[]').length;
-    this.numberOfProductsInCart = JSON.parse(localStorage.getItem('cart') || '[]').length;
   }
 
   ngOnInit(): void {
@@ -48,7 +47,10 @@ export class HeaderComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     });
-    
+    this.sharedService.callHeaderMethod$.subscribe(() => {
+      this.handleSessionExpired();
+    });
+
     this.isLoggedIn = this.authService.isLoggedIn();
   }
 
@@ -57,17 +59,43 @@ export class HeaderComponent implements OnInit {
       this.nav = data;
     });
   }
-
+  goToWishlist(){
+    if(!this.authService.isLoggedIn()){
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.router.navigate(['/wishlist']);
+  }
+  goToCart(){
+    if(!this.authService.isLoggedIn()){
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.router.navigate(['/cart']);
+  }
   logout() {
     this.authService.logout().subscribe({
       next: (response) => {
         if (response.status === 204) {
           this.router.navigate(['/login']);
+          this.numberOfProductsInCart = 0;
+          this.numberOfProductsInWishlist = 0;
+          this.wishlistService.wishlist = [];
+          this.cartService.cart = [];
+          this.authService.getLoggedInSubject().next(false);
         }
       },
       error: err => {
-        alert(err.error.error);
+        console.log(err);
+        
       }
     });
+  }
+  handleSessionExpired() {
+    this.numberOfProductsInCart = 0;
+    this.numberOfProductsInWishlist = 0;
+    this.wishlistService.wishlist = [];
+    this.cartService.cart = [];
+    this.authService.getLoggedInSubject().next(false);
   }
 }

@@ -24,8 +24,8 @@ export class SingleProductComponent implements OnInit{
 ;
   ngOnInit(): void {
     this.productId = this.route.snapshot.paramMap.get('id')!;
-    this.isProductInWishlist = this.wishlistService.isProductInWishlist(parseInt(this.productId));
-    
+    this.isProductInWishlist = this.wishlistService.isProductInWishlist(Number(this.productId));
+
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
@@ -93,16 +93,17 @@ export class SingleProductComponent implements OnInit{
     });
   }
   addProductTowishlist(productId: number,name : string): void {
+    if(this.isProductInWishlist){
+      this.wishlistService.removeProductFromWishlist(productId,name);
+      this.isProductInWishlist = false;
+      return;
+    }
     this.wishlistService.addProductToWishlist(productId,name);
-    let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-    this.isProductInWishlist = this.wishlistService.isProductInWishlist(parseInt(this.productId));
-    this.wishlistService.updateNumberOfProductsInWishlist(wishlist.length);
+    this.isProductInWishlist = true;
+    
   }
   addProductToCart(productId: number,name: string): void {
     this.cartService.addProductToCart(productId,this.quantity,name);
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    this.isProductInWishlist = this.cartService.isProductInCart(parseInt(this.productId));
-    this.cartService.updateNumberOfProductsInCart(cart.length);
   }
 
 }

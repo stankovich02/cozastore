@@ -17,6 +17,9 @@ export class AuthService {
     const token = this.getTokenFromCookie();
     return token !== null;
   }
+  getLoggedInSubject(): BehaviorSubject<boolean> {
+    return this.loggedInSubject;
+  }
 
   login(credentials: { email: string, password: string }): Observable<HttpResponse<AuthResponse>> {
     return this.http.post<AuthResponse>(
