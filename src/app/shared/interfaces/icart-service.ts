@@ -6,7 +6,7 @@ export interface ICartService {
     isProductInCart(productId: number): boolean;
     getProductsFromCart(): Observable<CartProduct[]>;
     changeProductQuantity(productId: number, quantity: number): void;
-    removeProductFromCart(productId: number,name : string): void;
+    removeProductFromCart(productId: number): void;
 }
 export const WISHLIST_SERVICE_TOKEN = new InjectionToken<ICartService>('ICartService');
 

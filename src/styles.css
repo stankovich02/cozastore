@@ -226,6 +226,12 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .logout{
   cursor: pointer!important;
 }
+.paymentLabel,.paymentRadio{
+  display: inline-block!important;
+}
+.userAddress{
+  cursor: pointer;
+}
   /*//////////////////////////////////////////////////////////////////
   [ BUTTON BACK TO TOP ]*/
   .btn-back-to-top {
@@ -7118,3 +7124,6 @@ iframe {border: none;}
 .pointer-none {
 	pointer-events: none;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

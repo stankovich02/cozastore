@@ -1,0 +1,106 @@
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-8">
+          <div class="card mb-4">
+            <div class="card-header py-3">
+              <h5 class="mb-0">Biling details</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="row mb-4">
+                  <div class="col">
+                    <div data-mdb-input-init class="form-outline">
+                      <input type="text" [(ngModel)]="userAddress.firstName" placeholder="First name" id="firstName" class="form-control" name="firstName" />
+                      @if(errors.firstName){
+                        <p class="text-danger mb-3">{{errors.firstName}}</p>
+                        }
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div data-mdb-input-init class="form-outline">
+                      <input type="text" [(ngModel)]="userAddress.lastName" placeholder="Last name" id="lastName" class="form-control" name="lastName" />
+                      @if(errors.lastName){
+                        <p class="text-danger mb-3">{{errors.lastName}}</p>
+                        }
+                    </div>
+                  </div>
+                </div>
+      
+            
+                <!-- Email input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <input type="email" [(ngModel)]="userAddress.email" placeholder="Email" id="email" class="form-control" name="email"/>
+                  @if(errors.email){
+                    <p class="text-danger mb-3">{{errors.email}}</p>
+                    }
+                </div>
+      
+                <!-- Number input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                <input type="text" [(ngModel)]="userAddress.phone" placeholder="Phone" id="phone" class="form-control" name="phone"/>
+                @if(errors.phone){
+                    <p class="text-danger mb-3">{{errors.phone}}</p>
+                    }
+                </div>
+               
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="text" [(ngModel)]="userAddress.address" placeholder="Address" id="address" class="form-control" name="address"/>
+                    @if(errors.address){
+                        <p class="text-danger mb-3">{{errors.address}}</p>
+                        }
+                </div>
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="text" [(ngModel)]="userAddress.country" placeholder="Country" id="country" class="form-control" name="country"/>
+                    @if(errors.country){
+                        <p class="text-danger mb-3">{{errors.country}}</p>
+                        }
+                </div>
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="text" [(ngModel)]="userAddress.city" placeholder="Cuty" id="city" class="form-control" name="city"/>
+                    @if(errors.city){
+                        <p class="text-danger mb-3">{{errors.city}}</p>
+                        }
+                </div>
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="text" [(ngModel)]="userAddress.zipcode" placeholder="Zip code" id="zipcode" class="form-control" name="zipcode"/>
+                    @if(errors.zipcode){
+                        <p class="text-danger mb-3">{{errors.zipcode}}</p>
+                        }
+                </div>
+
+                <div data-mdb-input-init class=" mb-4">
+                    <label>Payment type:</label>
+                    <input class="me-2 paymentRadio" [(ngModel)]="userAddress.paymentType" type="radio" name="paymentType" value="1" id="creditCard" />
+                    <label class="form-check-label paymentLabel" for="creditCard">
+                      Credit card
+                    </label>
+                    <br/>
+                    <input class="me-2 paymentRadio" [(ngModel)]="userAddress.paymentType"  type="radio" name="paymentType" value="2" id="directpayment" />
+                    <label class="form-check-label paymentLabel" for="directpayment">
+                      Direct payment
+                    </label>
+                    <br/>
+                    <input class="me-2 paymentRadio" [(ngModel)]="userAddress.paymentType"  type="radio" name="paymentType" value="3" id="paypal" />
+                    <label class="form-check-label paymentLabel" for="paypal">
+                      PayPal
+                    </label>
+                    @if(errors.paymentType){
+                        <p class="text-danger mb-3">{{errors.paymentType}}</p>
+                        }
+                  </div>
+                
+              </form>
+              <button (click)="createOrder()" class="mx-auto stext-101 cl0 size-103 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                Place order
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

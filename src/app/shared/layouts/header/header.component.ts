@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   numberOfProductsInCart: number = 0;
   numberOfProductsInWishlist: number = 0;
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(
     private router: Router,
@@ -52,26 +53,13 @@ export class HeaderComponent implements OnInit {
     });
 
     this.isLoggedIn = this.authService.isLoggedIn();
+    this.isAdmin = document.cookie.includes('isAdmin=True');
   }
 
   getNav() {
     this.navigationService.getNavigation().subscribe(data => {
       this.nav = data;
     });
-  }
-  goToWishlist(){
-    if(!this.authService.isLoggedIn()){
-      this.router.navigate(['/login']);
-      return;
-    }
-    this.router.navigate(['/wishlist']);
-  }
-  goToCart(){
-    if(!this.authService.isLoggedIn()){
-      this.router.navigate(['/login']);
-      return;
-    }
-    this.router.navigate(['/cart']);
   }
   logout() {
     this.authService.logout().subscribe({

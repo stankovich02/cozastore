@@ -9,38 +9,42 @@ const routes: Routes = [
   },
   {
     path:"home",
-    loadChildren:()=>import('./pages/home/home.module').then(m => m.HomeModule)
+    loadChildren:()=>import('./pages/client/home/home.module').then(m => m.HomeModule)
   },
   {
     path:"about",
-    loadChildren:()=>import('./pages/about/about.module').then(m => m.AboutModule)
+    loadChildren:()=>import('./pages/client/about/about.module').then(m => m.AboutModule)
   },
   {
     path:"shop",
-    loadChildren:()=>import('./pages/shop/shop.module').then(m => m.ShopModule)
+    loadChildren:()=>import('./pages/client/shop/shop.module').then(m => m.ShopModule)
   },
   { path: "products/:id",
-    loadChildren: () => import('./pages/single-product/single-product.module').then(m => m.SingleProductModule) 
+    loadChildren: () => import('./pages/client/single-product/single-product.module').then(m => m.SingleProductModule) 
   },
   {
     path:"contact",
-    loadChildren:()=>import('./pages/contact/contact.module').then(m => m.ContactModule)
+    loadChildren:()=>import('./pages/client/contact/contact.module').then(m => m.ContactModule)
   },
   {
     path:"cart",
-    loadChildren:()=>import('./pages/cart/cart.module').then(m => m.CartModule)
+    loadChildren:()=>import('./pages/client/cart/cart.module').then(m => m.CartModule)
   },
   {
     path:"wishlist",
-    loadChildren:()=>import('./pages/wishlist/wishlist.module').then(m => m.WishlistModule)
+    loadChildren:()=>import('./pages/client/wishlist/wishlist.module').then(m => m.WishlistModule)
   },
   {
     path: "login",
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
+    loadChildren: () => import('./pages/client/login/login.module').then(m => m.LoginModule)
   },
   {
     path: "register",
-    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule)
+    loadChildren: () => import('./pages/client/register/register.module').then(m => m.RegisterModule)
+  },
+  {
+    path: "checkout",
+    loadChildren: () => import('./pages/client/checkout/checkout.module').then(m => m.CheckoutModule)
   },
   { 
     path: '**', 

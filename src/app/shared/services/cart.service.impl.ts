@@ -20,7 +20,6 @@ export class CartServiceImpl implements ICartService{
         this.cart = cart;
         this.numberOfProductsInCartSubject.next(Number(this.cart.length));
       });
-      this.numberOfProductsInCartSubject.next(Number(this.cart.length));
      }
    }
   addProductToCart(productId: number, quantity: number, name: string): void {
@@ -63,40 +62,19 @@ export class CartServiceImpl implements ICartService{
   getProductsFromCart(): Observable<CartProduct[]> {
     return this.http.get<CartProduct[]>(this.baseUrl);
 }
-  changeProductQuantity(productId: number, quantity: number): void {
-     this.http.put<HttpResponse<any>>(this.baseUrl, 
+  changeProductQuantity(productId: number, quantity: number): Observable<any> {
+     return this.http.put<HttpResponse<any>>(this.baseUrl, 
       {
         productId: productId,
         quantity: quantity
       }, 
       { observe: 'response' }
-    ).subscribe(
-      response => {
-        if (response.status === 204) {
-          this.getProductsFromCart().subscribe((cart : CartProduct[]) => {
-            this.cart = cart;
-          });
-        }
-      },
-      error => {
-        if(error.status === 404){
-          Swal.fire("Oops!", "Product doesn't exist", 'error');
-        }
-        if(error.status === 409){
-          Swal.fire("Hey!", error.error.error, 'info');
-        }
-        if(error.status == 422){
-          console.log(error);
-          Swal.fire("Oops!",  error.error[0].error, 'error');
-        }
-      }
     );
   }
-  removeProductFromCart(productId: number,name: string): void {
-    this.cart = this.cart.filter(product => product.id !== productId);
-    localStorage.setItem('cart', JSON.stringify(this.cart));
-    this.updateNumberOfProductsInCart(this.cart.length);
-    Swal.fire(name, "has been removed from the cart.", "success");
+  removeProductFromCart(productId: number): Observable<any> {
+    return this.http.delete<HttpResponse<any>>(`${this.baseUrl}/${productId}`, 
+      { observe: 'response' }
+    );
   }
   updateNumberOfProductsInCart(num: number): void {
     this.numberOfProductsInCartSubject.next(num);

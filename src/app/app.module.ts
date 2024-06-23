@@ -8,6 +8,7 @@ import { FooterComponent } from './shared/layouts/footer/footer.component';
 import { HeaderComponent } from './shared/layouts/header/header.component';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './shared/auth-interceptor';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AuthInterceptor } from './shared/auth-interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
