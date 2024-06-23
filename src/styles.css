@@ -223,6 +223,9 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     background-color: #222!important;;
     color: #fff!important;
 }
+.logout{
+  cursor: pointer!important;
+}
   /*//////////////////////////////////////////////////////////////////
   [ BUTTON BACK TO TOP ]*/
   .btn-back-to-top {

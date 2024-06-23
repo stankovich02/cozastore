@@ -1,0 +1,12 @@
+<form method="" action="" class="d-flex flex-column align-items-center py-5">
+    <h4 class="mtext-105 cl2 txt-center p-b-30">
+        Login
+    </h4>
+    <input [(ngModel)]="email" class="bor8 m-b-10 how-pos4-parent stext-111 cl2 plh3 size-107 p-l-30 p-r-30" type="text" name="email" placeholder="Email">
+    <input [(ngModel)]="password" class="bor8 m-b-10 how-pos4-parent stext-111 cl2 plh3 size-107 p-l-30 p-r-30" type="password" name="password" placeholder="Password">
+    <input type="button" (click)="login()"  class="flex-c-m stext-101 cl0 size-107 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" value="Login">
+    @if(error){
+        <p class="text-danger mt-3">{{error}}</p>
+    }
+</form>
+<p class="text-center py-5">Don't have an account? <a routerLink="/register">Register now</a></p>

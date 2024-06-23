@@ -1,4 +1,6 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component} from '@angular/core';
+import { ValidatonError } from '../../../../core/models/object-model';
 
 @Component({
   selector: 'app-contact',
@@ -6,44 +8,70 @@ import { Component} from '@angular/core';
   styleUrl: './contact.component.css'
 })
 export class ContactComponent{
+  constructor(private http: HttpClient){
+  }
   protected email: string = '';
+  protected fullName: string = '';
+  protected subject: string = '';
   protected message: string = '';
   protected emailError: string = '';
   protected messageError: string = '';
+  protected fullNameError: string = '';
+  protected subjectError: string = '';
   protected validForm: boolean = false;
 
   submitForm(){
-    let emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-    if(this.email == ''){
-      this.emailError = 'Email is required.';
-    }
-    else if(emailRegex.test(this.email) == false){
-      this.emailError = 'Invalid email. Example: jhondoe@gmail.com';
-    }
-    else{
-      this.emailError = '';
-    }
-    if(this.message == ''){
-      this.messageError = 'Message is required.';
-    }
-    else if(this.message.length < 10){
-      this.messageError = 'Message must be at least 10 characters.';
-    }
-    else{
-      this.messageError = '';
-    }
-
-
-    if(this.emailError == '' && this.messageError == ''){
-      this.validForm = true;
-      this.email = '';
-      this.message = '';
-      setTimeout(() => {
+    this.http.post<HttpResponse<any>>('http://localhost:5001/api/messages', 
+      {
+        email: this.email,
+        fullName: this.fullName,
+        subject: this.subject,
+        messageText: this.message
+      }, 
+      { observe: 'response' }
+    ).subscribe(
+      response => {
+        if (response.status === 201) {
+          this.validForm = true;
+          this.email = "";
+          this.message = "";
+          this.fullName = "";
+          this.subject = "";
+          this.emailError = "";
+          this.fullNameError = "";
+          this.subjectError = "";
+          this.messageError = "";
+          setTimeout(() => {
+            this.validForm = false;
+          }, 2000);
+        }
+      },
+      error => {
+        if (error.status === 422) {
+          this.emailError = "";
+          this.fullNameError = "";
+          this.subjectError = "";
+          this.messageError = "";
+          error.error.forEach(element => {
+            switch (element.property) {
+              case 'Email':
+                this.emailError = element.error;
+                break;
+              case 'FullName':
+                this.fullNameError = element.error;
+                break;
+              case 'Subject':
+                this.subjectError = element.error;
+                break;
+              case 'MessageText':
+                this.messageError = element.error;
+                break;
+            }
+          });
+        }
         this.validForm = false;
-      }, 2000);
-    }
-    else{
-      this.validForm = false;
-    }
+      }
+    );
+    
   }
 }

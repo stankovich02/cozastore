@@ -38,7 +38,7 @@ export class SingleProductComponent implements OnInit{
     this.loadScripts();
   }
   getProductImagePath(imagePath: string) {
-    return '/assets/images/products/' + imagePath + '.jpg';
+    return 'http://localhost:5001/' + imagePath;
   }
   getProductRating(rating: number) {
     let html = '';
@@ -59,7 +59,7 @@ export class SingleProductComponent implements OnInit{
   }
   loadRelatedProducts() {
     if (this.product) {
-      this.productService.getRelatedProducts(this.product.category, this.product.gender, this.product.id).subscribe((data) => {
+      this.productService.getRelatedProducts(this.product.id).subscribe((data) => {
         this.relatedProducts = data;
       });
     }

@@ -12,9 +12,9 @@
 							<div class="slick3 gallery-lb">
 								<div *ngFor="let image of product.images; let i = index" class="item-slick3" [attr.data-thumb]="getProductImagePath(image)">
 									<div class="wrap-pic-w pos-relative">
-										<img src="/assets/images/products/{{image}}.jpg" alt="IMG-PRODUCT">
+										<img src="http://localhost:5001/{{image}}" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/assets/images/products/{{image}}.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="http://localhost:5001/{{image}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -31,7 +31,7 @@
 						</h4>
 
 						<span *ngIf="product.price" class="mtext-106 cl2">
-							<span *ngIf="product.discount != null" style="text-decoration: line-through; color: red;">${{ product.price.oldPrice }}</span>
+							<span *ngIf="product.discount != 0" style="text-decoration: line-through; color: red;">${{ product.price.oldPrice }}</span>
 							${{product.price.activePrice}}
 						</span>
 						

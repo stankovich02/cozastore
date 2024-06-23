@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject,Output, EventEmitter} from '@angular/core';
-import { NamedEntity, Product } from '../../../../core/models/object-model';
-import { HttpClient } from '@angular/common/http';
+import { NamedEntity, NamedEntityAPI, Product, ProductAPI } from '../../../../core/models/object-model';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ProductsServiceImpl } from '../../../../shared/services/products.service.impl';
 import { IProductService, PRODUCT_SERVICE_TOKEN } from '../../../../shared/interfaces/iproduct-service.inteface';
 
@@ -15,7 +15,6 @@ import { IProductService, PRODUCT_SERVICE_TOKEN } from '../../../../shared/inter
 })
 export class ShopComponent implements OnInit{
   protected products : Product[] = [];
-  protected originalProducts : Product[] = [];
   protected colors : NamedEntity[];
   protected sizes : NamedEntity[];
   protected brands : NamedEntity[];
@@ -24,7 +23,7 @@ export class ShopComponent implements OnInit{
     colors : [],
     sizes : [],
     brands : [],
-    category : "",
+    category : 0,
     keyword : "",
     price: {
       min : 0,
@@ -46,7 +45,7 @@ export class ShopComponent implements OnInit{
   protected productsLength : number = 0;
   protected pages : number[] = [];
   protected activePage : number = 1;
-  private baseUrl = 'http://localhost:4200/assets/data/';
+  private baseUrl = 'http://localhost:5001/api/';
 
  constructor(@Inject(PRODUCT_SERVICE_TOKEN) private productService: IProductService,  private http : HttpClient){
   
@@ -56,76 +55,72 @@ export class ShopComponent implements OnInit{
     this.loadFilters();
   }
   loadProducts(){
-    this.productService.getProducts().subscribe((data)=>{
-      this.products = data;
+    this.productService.getProducts().subscribe((response)=>{
+      this.products = response.data;
       this.maxProductIndex = this.products.slice((this.activePage-1)*ShopComponent.perPage,this.activePage*ShopComponent.perPage).length;
-      this.productsLength = this.products.length;
-      this.originalProducts = data;
-      for(let i = 1; i <= Math.ceil(this.products.length/ShopComponent.perPage); i++){
+      this.productsLength = response.totalCount;
+      for(let i = 1; i <= response.pages; i++){
         this.pages.push(i);
       }
-      this.products = this.products.slice(0,ShopComponent.perPage);
     });
   }
   loadFilters(){
-    this.http.get<NamedEntity[]>(`${this.baseUrl}colors.json`).subscribe((data)=>{
-      this.colors = data;
+    this.http.get<NamedEntityAPI>(`${this.baseUrl}colors?perPage=20`).subscribe((response)=>{
+      this.colors = response.data;
     });
-    this.http.get<NamedEntity[]>(`${this.baseUrl}sizes.json`).subscribe((data)=>{
-      this.sizes = data;
+    this.http.get<NamedEntityAPI>(`${this.baseUrl}sizes?perPage=20`).subscribe((response)=>{
+      this.sizes = response.data;
     });
-    this.http.get<NamedEntity[]>(`${this.baseUrl}brands.json`).subscribe((data)=>{
-      this.brands = data;
+    this.http.get<NamedEntityAPI>(`${this.baseUrl}brands?perPage=20`).subscribe((response)=>{
+      this.brands = response.data;
     });
-    this.http.get<NamedEntity[]>(`${this.baseUrl}categories.json`).subscribe((data)=>{
-      this.categories = data;
+    this.http.get<NamedEntityAPI>(`${this.baseUrl}categories?perPage=20`).subscribe((response)=>{
+      this.categories = response.data;
     });
   }
   filterByName(keyword : string){
     this.filters.keyword = keyword;
     this.filterProducts();
   }
-  filterByColor(color : string, index : number){
-    if(this.filters.colors.includes(color)){ 
+  filterByColor(colorID : number, index : number){
+    if(this.filters.colors.includes(colorID)){ 
       this.selectedIndexes.colors = this.selectedIndexes.colors.filter((item)=> item !== index);
-      this.filters.colors = this.filters.colors.filter((item)=> item !== color);
+      this.filters.colors = this.filters.colors.filter((item)=> item !== colorID);
     }else{
       this.selectedIndexes.colors.push(index);
-      this.filters.colors.push(color);
-    }
-    console.log(this.filters.colors);
-    
+      this.filters.colors.push(colorID);
+    }    
     this.filterProducts();
   }
-  filterBySize(size : string, index : number){
-    if(this.filters.sizes.includes(size)){
+  filterBySize(sizeID : number, index : number){
+    if(this.filters.sizes.includes(sizeID)){
       this.selectedIndexes.sizes = this.selectedIndexes.sizes.filter((item)=> item !== index);
-      this.filters.sizes = this.filters.sizes.filter((item)=> item !== size);
+      this.filters.sizes = this.filters.sizes.filter((item)=> item !== sizeID);
     }else{
       this.selectedIndexes.sizes.push(index);
-      this.filters.sizes.push(size);
+      this.filters.sizes.push(sizeID);
     }
     this.filterProducts();
   }
-  filterByBrand(brand : string, index : number){
-    if(this.filters.brands.includes(brand)){
+  filterByBrand(brandID : number, index : number){
+    if(this.filters.brands.includes(brandID)){
       this.selectedIndexes.brands = this.selectedIndexes.brands.filter((item)=> item !== index);
-      this.filters.brands = this.filters.brands.filter((item)=> item !== brand);
+      this.filters.brands = this.filters.brands.filter((item)=> item !== brandID);
     }else{
       this.selectedIndexes.brands.push(index);
-      this.filters.brands.push(brand);
+      this.filters.brands.push(brandID);
     }
     this.filterProducts();
   }
-  filterByCategory(category : string, index : number){
+  filterByCategory(categoryID : number, index : number){
     if(this.selectedIndexes.category === index){
       this.selectedIndexes.category = -1;
-      this.filters.category = "";
+      this.filters.category = 0;
       this.filterProducts();
       return;
     }
     this.selectedIndexes.category = index;
-    this.filters.category = category;
+    this.filters.category = categoryID;
     this.filterProducts();
   }
   pagination(page : number){
@@ -150,68 +145,64 @@ export class ShopComponent implements OnInit{
     this.filterProducts();
   }
   filterProducts(paginationClicked? : boolean){
+    let params = new HttpParams();
+
+    params = params.append('IsActive', "true");
     if(!paginationClicked){
       this.activePage = 1;
     }
-    this.products = this.originalProducts.filter((product)=>{
-      return product.name.toLowerCase().includes(this.filters.keyword.toLowerCase());
-    });
+    else{
+      params = params.append('Page', this.activePage.toString());
+    }
+    if(this.filters.keyword){
+      params = params.append('Keyword', this.filters.keyword);
+    }
     if(this.filters.colors.length > 0){
-      let tempArray = [];
-      for(let color of this.filters.colors){
-       for(let product of this.products){
-         if(product.colors.includes(color)){
-           tempArray.push(product);
-         }
-       }
-      }
-      this.products = tempArray;
+      this.filters.colors.forEach(id => {
+        params = params.append('ColorIds', id.toString());
+      });
     }
     if(this.filters.sizes.length > 0){
-      let tempArray = [];
-      for(let size of this.filters.sizes){
-       for(let product of this.products){
-         if(product.sizes.includes(size)){
-           tempArray.push(product);
-         }
-       }
-      }
-      this.products = tempArray;
+      this.filters.sizes.forEach(id => {
+        params = params.append('SizeIds', id.toString());
+      });
     }
     if(this.filters.brands.length > 0){
-      this.products = this.products.filter((product)=>{
-        return this.filters.brands.includes(product.brand);
+      this.filters.brands.forEach(id => {
+        params = params.append('BrandIds', id.toString());
       });
     }
     if(this.filters.category){
-      this.products = this.products.filter((product)=>{
-        return this.filters.category === product.category;
-      });
+      params = params.append('CategoryId', this.filters.category.toString());
     }
-    if(this.filters.price.min > 0 || this.filters.price.max < 1000){
-      this.products = this.products.filter((product)=>{
-        return product.price.activePrice >= this.filters.price.min && product.price.activePrice < this.filters.price.max;
-      });
+    if(this.filters.price.min > 0){
+      params = params.append('MinPrice', this.filters.price.min.toString());
     }
-    this.products = this.products.sort((a,b)=>{
+    if(this.filters.price.max < 1000){
+      params = params.append('MaxPrice', this.filters.price.max.toString());
+    }
+    if(this.filters.sortBy){
       if(this.filters.sortBy === "price-asc"){
-        return a.price.activePrice - b.price.activePrice;
-      }else if(this.filters.sortBy === "price-desc"){
-        return b.price.activePrice - a.price.activePrice;
-      }else if(this.filters.sortBy === "latest"){
-        return b.id - a.id;
-      }else if(this.filters.sortBy === "rating"){
-        return b.averageRating - a.averageRating;
-      }
-      return 0;
-    });
-    this.productsLength = this.products.length;
-    this.minProductIndex = (this.activePage-1)*ShopComponent.perPage + 1;
-    this.maxProductIndex = this.products.slice((this.activePage-1)*ShopComponent.perPage,this.activePage*ShopComponent.perPage).length + (this.activePage-1)*ShopComponent.perPage;
-    this.pages = [];
-    for(let i = 1; i <= Math.ceil(this.products.length/ShopComponent.perPage); i++){
-      this.pages.push(i);
+        params = params.append('Sort', 'price-asc');
+       }else if(this.filters.sortBy === "price-desc"){
+        params = params.append('Sort', 'price-desc');
+       }else if(this.filters.sortBy === "latest"){
+        params = params.append('Sort', 'latest');
+       }else if(this.filters.sortBy === "rating"){
+        params = params.append('Sort', 'rating');
+       }
     }
-    this.products = this.products.slice((this.activePage-1)*ShopComponent.perPage,this.activePage*ShopComponent.perPage);
+    this.http.get<ProductAPI>('http://localhost:5001/api/products', { params }).subscribe((response)=>{
+      this.products = response.data;
+      this.productsLength = response.totalCount;
+      this.minProductIndex = (this.activePage-1)*ShopComponent.perPage + 1;
+      this.maxProductIndex = response.data.length + this.minProductIndex - 1;
+      this.pages = [];
+      for(let i = 1; i <= response.pages; i++){
+        this.pages.push(i);
+      }
+    });
   } 
 }
+
+
