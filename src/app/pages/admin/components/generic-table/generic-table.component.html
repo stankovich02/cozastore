@@ -68,18 +68,19 @@
                     }
                 }
                 
-                @if(tableForUpdate.includes(table) && tableForDelete.includes(table)){
+              
                    <td>
                        
                         @if(item['status'] == 'Active'){
+                            @if(tableForUpdate.includes(table)){
                             <button (click)="navigateToUpdate(item['id'])" class="btn btn-primary">Update</button>
+                            }
                             <button class="btn btn-danger" style="margin-left: 10px;" (click)="deleteEntity(item['id'])">Delete</button>
                         }
-                        @else {
+                        @if(item['status'] == 'Inactive'){
                             <button class="btn btn-success" style="margin-left: 10px;" (click)="activateEntity(item['id'])">Activate</button>
                         }
                    </td>         
-                }
                 </tr>
             }   
         </tbody>

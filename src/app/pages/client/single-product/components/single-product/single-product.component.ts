@@ -1,11 +1,13 @@
 import { Component, OnInit, Renderer2, Inject, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ProductsServiceImpl } from '../../../../../shared/services/products.service.impl';
-import { Product } from '../../../../../core/models/object-model';
+import { Product, ValidatonError } from '../../../../../core/models/object-model';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { WishlistServiceImpl } from '../../../../../shared/services/wishlist.service.impl';
 import { CartServiceImpl } from '../../../../../shared/services/cart.service.impl';
+import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-single-product',
@@ -18,7 +20,10 @@ export class SingleProductComponent implements OnInit{
   protected product : Product = {} as Product;
   protected relatedProducts : Product[] = [];
   protected isProductInWishlist: boolean;
-  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private productService : ProductsServiceImpl, private route: ActivatedRoute,private router: Router,private wishlistService : WishlistServiceImpl,private cartService : CartServiceImpl) {
+  protected reviewText: string = '';
+  protected rateError: string = '';
+  protected reviewTextError: string = '';
+  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private productService : ProductsServiceImpl, private route: ActivatedRoute,private router: Router,private wishlistService : WishlistServiceImpl,private cartService : CartServiceImpl,private http: HttpClient) {
    
   }
 ;
@@ -104,6 +109,44 @@ export class SingleProductComponent implements OnInit{
   }
   addProductToCart(productId: number,name: string): void {
     this.cartService.addProductToCart(productId,this.quantity,name);
+  }
+  submitReview(): void {
+    let rate = document.querySelectorAll(".w-full .zmdi-star").length;
+    this.http.post('http://localhost:5001/api/reviews', {
+      productId: this.product.id,
+      rate: rate,
+      reviewText: this.reviewText
+    },{observe: 'response'}).subscribe(response => {
+      if (response.status == 201) {
+        this.reviewText = '';
+        this.rateError = '';
+        this.reviewTextError = '';
+        Swal.fire('Congratulations!', 'Your review has been submitted successfully!', 'success').then(() => {
+          this.reloadComponent();
+        });
+      }
+    },
+    error => {
+      if(error.status == 409){
+        Swal.fire('Error!', error.error.error , 'error');
+      }
+      if(error.status == 422){
+        console.log(error.error);
+        
+        this.rateError = '';
+        this.reviewTextError = '';
+       error.error.forEach((element: ValidatonError) => {
+        switch (element.property) {
+          case 'Rate':
+            this.rateError = element.error;
+            break;
+          case 'ReviewText':
+            this.reviewTextError = element.error;
+            break;
+        }
+       });
+      }
+    });
   }
 
 }

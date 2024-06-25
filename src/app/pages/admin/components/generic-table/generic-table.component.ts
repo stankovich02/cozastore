@@ -12,9 +12,9 @@ import { PagedResponse } from '../../../../core/models/object-model';
 })
 export class GenericTableComponent{
   protected table : string = '';
-  protected tables: Array<string> = ['products','categories','brands','colors','sizes','users','genders','discounts','orders','prices','auditlogs','errorlogs','reviews'];
-  protected tableForCreate : Array<string> = ['products','categories','brands','colors','sizes','users','genders','discounts'];
-  protected tableForUpdate : Array<string> = ['products','categories','brands','colors','sizes','users','genders','discounts'];
+  protected tables: Array<string> = ['products','categories','brands','colors','sizes','users','genders','discounts','orders','prices','auditlogs','errorlogs','reviews','messages'];
+  protected tableForCreate : Array<string> = ['products','categories','brands','colors','sizes','genders','discounts'];
+  protected tableForUpdate : Array<string> = ['products','categories','brands','colors','sizes','genders','discounts'];
   protected tableForDelete : Array<string> = ['products','categories','brands','colors','sizes','users','genders','discounts'];
 
   protected filtersToShow  = {
@@ -25,7 +25,7 @@ export class GenericTableComponent{
     searchByName: '',
     searchByIsActive: null,
   }
-  protected columnsForSkip : Array<string> = ['reviews','averageRating'];
+  protected columnsForSkip : Array<string> = ['reviews','averageRating','items'];
   protected items : any = [];
   protected columns : any = [];
   protected entitiesLength : number = 0;
