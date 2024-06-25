@@ -1,9 +1,9 @@
 import { Observable } from "rxjs";
-import { Product, ProductAPI } from "../../core/models/object-model";
+import { Product, PagedResponse } from "../../core/models/object-model";
 import { InjectionToken } from "@angular/core";
 
 export interface IProductService {
-    getProducts(): Observable<ProductAPI>;
+    getProducts(): Observable<PagedResponse<Product>>;
     getLatestProducts(numOfProducts: number): Observable<Product[]>;
     getProduct(id: number): Observable<Product>;
     getRelatedProducts(id : number): Observable<Product[]>;

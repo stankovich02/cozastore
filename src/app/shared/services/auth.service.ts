@@ -10,6 +10,9 @@ import { AuthResponse } from '../../core/models/object-model';
 export class AuthService {
   private loggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$: Observable<boolean> = this.loggedInSubject.asObservable();
+
+  private adminSubject = new BehaviorSubject<boolean>(false);
+  isAdmin$: Observable<boolean> = this.adminSubject.asObservable();
   
   constructor(private http: HttpClient) { }
 
@@ -17,10 +20,18 @@ export class AuthService {
     const token = this.getTokenFromCookie();
     return token !== null;
   }
+  isAdmin(): boolean {
+    return document.cookie.includes('isAdmin=True');
+  }
   getLoggedInSubject(): BehaviorSubject<boolean> {
     return this.loggedInSubject;
   }
-
+  getisAdminSubject(): BehaviorSubject<boolean> {
+    return this.adminSubject;
+  }
+  setAdminStatus(): void {
+    this.adminSubject.next(document.cookie.includes('isAdmin=True'));
+  }
   login(credentials: { email: string, password: string }): Observable<HttpResponse<AuthResponse>> {
     return this.http.post<AuthResponse>(
       'http://localhost:5001/api/auth', 

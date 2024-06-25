@@ -17,6 +17,9 @@ export class LoginComponent implements OnInit{
     if(document.cookie.includes('sessionExpired')){
       document.cookie = 'sessionExpired=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     }
+    if(document.cookie.includes('isAdmin')){
+      document.cookie = 'isAdmin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    }
   }
   protected email: string = 'testtest@gmail.com';
   protected password: string = 'Test1234';
@@ -36,6 +39,7 @@ export class LoginComponent implements OnInit{
             this.cartService.updateNumberOfProductsInCart(cart.length);
             this.cartService.cart = cart;
           });
+          this.authService.setAdminStatus();
         }
       },
       error: err => {

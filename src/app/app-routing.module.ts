@@ -46,6 +46,10 @@ const routes: Routes = [
     path: "checkout",
     loadChildren: () => import('./pages/client/checkout/checkout.module').then(m => m.CheckoutModule)
   },
+  {
+    path:"admin",
+    loadChildren:()=>import('./pages/admin/dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
   { 
     path: '**', 
     redirectTo: '404' 

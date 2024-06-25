@@ -1,22 +1,22 @@
 export interface Product {
     id: number;
     name: string;
-    category: string | null;
-    brand: string | null;
+    category: string;
+    brand: string;
     price: {
         oldPrice: number | null;
         activePrice: number;
     };
     discount: number;
-    description: string | null;
-    sizes: string[] | null;
-    colors: string[]| null;
-    gender: string | null;
+    description: string;
+    sizes: string[];
+    colors: string[];
+    gender: string;
     inStock: boolean;
     images: string[];
-    reviews: Review[] | null;
-    status: string | null;
-    averageRating: number | null;
+    reviews: Review[];
+    status: string;
+    averageRating: number;
 }
 export interface NamedEntity{
     id: number;
@@ -43,8 +43,8 @@ export interface CartProduct{
     image: string;
     price: number;
 }
-export interface ProductAPI{
-    data: Product[];
+export interface PagedResponse<T>{
+    data: T[];
     perPage: number;
     totalCount: number;
     currentPage: number;

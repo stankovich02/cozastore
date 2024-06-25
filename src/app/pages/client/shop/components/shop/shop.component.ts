@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject,Output, EventEmitter} from '@angular/core';
-import { NamedEntity, NamedEntityAPI, Product, ProductAPI } from '../../../../../core/models/object-model';
+import { NamedEntity, NamedEntityAPI, Product, PagedResponse } from '../../../../../core/models/object-model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ProductsServiceImpl } from '../../../../../shared/services/products.service.impl';
 import { IProductService, PRODUCT_SERVICE_TOKEN } from '../../../../../shared/interfaces/iproduct-service.inteface';
@@ -192,7 +192,7 @@ export class ShopComponent implements OnInit{
         params = params.append('Sort', 'rating');
        }
     }
-    this.http.get<ProductAPI>('http://localhost:5001/api/products', { params }).subscribe((response)=>{
+    this.http.get<PagedResponse<Product>>('http://localhost:5001/api/products', { params }).subscribe((response)=>{
       this.products = response.data;
       this.productsLength = response.totalCount;
       this.minProductIndex = (this.activePage-1)*ShopComponent.perPage + 1;

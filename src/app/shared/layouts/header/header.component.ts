@@ -48,12 +48,15 @@ export class HeaderComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     });
+    this.authService.isAdmin$.subscribe(isAdmin => {
+      this.isAdmin = isAdmin;
+    });
     this.sharedService.callHeaderMethod$.subscribe(() => {
       this.handleSessionExpired();
     });
 
     this.isLoggedIn = this.authService.isLoggedIn();
-    this.isAdmin = document.cookie.includes('isAdmin=True');
+    this.isAdmin = this.authService.isAdmin();
   }
 
   getNav() {

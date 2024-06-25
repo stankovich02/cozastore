@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product, ProductAPI } from '../../core/models/object-model';
+import { Product, PagedResponse } from '../../core/models/object-model';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -13,8 +13,8 @@ export class ProductsServiceImpl implements IProductService  {
   private baseUrl : string = 'http://localhost:5001/api/products';
   constructor(private http : HttpClient, private router : Router){
   }
-  getProducts() : Observable<ProductAPI>{
-    return this.http.get<ProductAPI>(`${this.baseUrl}`);
+  getProducts() : Observable<PagedResponse<Product>>{
+    return this.http.get<PagedResponse<Product>>(`${this.baseUrl}?isActive=true`);
   }
   getLatestProducts(numOfProducts : number) : Observable<Product[]>{
     return this.http.get<Product[]>(`${this.baseUrl}/latest?limit=${numOfProducts}`);
