@@ -1,0 +1,39 @@
+<form class="mx-auto mb-5" style="width: 300px;">
+    <div data-mdb-input-init class="form-outline mb-4">
+        <select [(ngModel)]="discount.productId" id="productId" class="form-control" name="productId">
+            <option value="0">Select product</option>
+            <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
+        </select>
+        @if(errors.productId){
+          <p class="text-danger mb-3">{{errors.productId}}</p>
+          }
+      </div>
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label for="discountPercent" class="form-label">Discount Percent</label>
+        <input type="number" [(ngModel)]="discount.discountPercent" id="discountPercent" class="form-control" name="discountPercent" />
+        @if(errors.discountPercent){
+        <p class="text-danger mb-3">{{errors.discountPercent}}</p>
+        }
+    </div>
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label for="dateFrom" class="form-label">Date From</label>
+        <input type="datetime-local" [(ngModel)]="discount.dateFrom" id="dateFrom" class="form-control" name="dateFrom" />
+        @if(errors.dateFrom){
+        <p class="text-danger mb-3">{{errors.dateFrom}}</p>
+        }
+    </div>
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label for="dateTo" class="form-label">Date To</label>
+        <input type="datetime-local" [(ngModel)]="discount.dateTo" id="dateTo" class="form-control" name="dateTo" />
+        @if(errors.dateTo){
+        <p class="text-danger mb-3">{{errors.dateTo}}</p>
+        }
+    </div>
+
+    @if (this.router.url.includes("update")) {
+        <button class="btn btn-primary btn-block mb-4" (click)="updateDiscount()">Update discount</button>
+        } 
+        @else {
+        <button class="btn btn-primary btn-block mb-4" (click)="addDiscount()">Add discount</button>
+        }
+</form>

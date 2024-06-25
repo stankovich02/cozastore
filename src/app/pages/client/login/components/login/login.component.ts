@@ -14,6 +14,9 @@ import { CartServiceImpl } from '../../../../../shared/services/cart.service.imp
 export class LoginComponent implements OnInit{
   constructor(private authService : AuthService,private router: Router,private wishlistService: WishlistServiceImpl,private cartService: CartServiceImpl){}
   ngOnInit(): void {
+    if(this.authService.isLoggedIn()){
+      this.router.navigate(['/home']);
+    }
     if(document.cookie.includes('sessionExpired')){
       document.cookie = 'sessionExpired=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     }

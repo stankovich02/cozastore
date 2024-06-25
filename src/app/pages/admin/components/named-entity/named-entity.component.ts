@@ -34,7 +34,7 @@ export class NamedEntityComponent {
       }
     }
   protected nameError = '';
-  addProduct(){    
+  addEntity(){    
     this.http.post(`${this.baseUrl}${this.table}`, {name: this.name}, {observe: 'response'}).subscribe(
       response=>{
       this.nameError = '';
@@ -52,7 +52,7 @@ export class NamedEntityComponent {
       }
     });
   }
-  updateProduct(){
+  updateEntity(){
     let id = this.route.snapshot.paramMap.get('id');
     this.http.put(`${this.baseUrl}${this.table}/${id}`,{name: this.name}, {observe: 'response'}).subscribe(
       response=>{

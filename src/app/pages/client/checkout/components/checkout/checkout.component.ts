@@ -38,6 +38,9 @@ export class CheckoutComponent implements OnInit{
     if(!this.authService.isLoggedIn()){
       this.router.navigate(['/login']);
     }
+    if(this.authService.isAdmin()){
+      this.router.navigate(['/home']);
+    }
     if(this.cartService.cart.length == 0){
       this.router.navigate(['/cart']);
     }

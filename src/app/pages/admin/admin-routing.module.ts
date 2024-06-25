@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/components/admin/admin.component';
 import { ProductComponent } from './components/product/product.component';
 import { NamedEntityComponent } from './components/named-entity/named-entity.component';
+import { DiscountComponent } from './components/discount/discount.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,16 @@ const routes: Routes = [
     path: "genders/:id/update",
     pathMatch: "prefix",
     component: NamedEntityComponent,
+  },
+  {
+    path: "discounts/create",
+    pathMatch: "prefix",
+    component: DiscountComponent,
+  },
+  {
+    path: "discounts/:id/update",
+    pathMatch: "prefix",
+    component: DiscountComponent,
   },
   {
     path: "**",

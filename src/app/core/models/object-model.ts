@@ -60,3 +60,9 @@ export interface AuthResponse{
 export interface UploadImageAPI{
     file: string;
 }
+export interface DiscountAPI{
+    product: string;
+    discountPercent: number;
+    dateFrom: string;
+    dateTo: string;
+}

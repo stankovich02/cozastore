@@ -1,14 +1,21 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs';
+import { AuthService } from '../../../../../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
-  constructor(private http: HttpClient){}
+export class RegisterComponent implements OnInit{
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router){}
+  ngOnInit(): void {
+    if(this.authService.isLoggedIn()){
+      this.router.navigate(['/home']);
+    }
+  }
   protected validForm: boolean = false;
   protected user: any = {
     username : '',

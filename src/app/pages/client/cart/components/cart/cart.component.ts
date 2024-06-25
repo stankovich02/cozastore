@@ -19,6 +19,9 @@ export class CartComponent implements OnInit{
   }
   ngOnInit(): void {
     if(this.authService.isLoggedIn()){
+      if(this.authService.isAdmin()){
+        this.router.navigate(['/home']);
+      }
       this.cartService.getProductsFromCart().subscribe((cart) => {
         this.products = cart;
         this.calculateTotalPrice();

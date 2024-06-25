@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/components/dashboard/dashboard.c
 import { ProductComponent } from './components/product/product.component';
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
 import { NamedEntityComponent } from './components/named-entity/named-entity.component';
+import { DiscountComponent } from './components/discount/discount.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { NamedEntityComponent } from './components/named-entity/named-entity.com
     AdminComponent,
     DashboardComponent,
     ProductComponent,
-    NamedEntityComponent
+    NamedEntityComponent,
+    DiscountComponent
   ],
   imports: [
     CommonModule,

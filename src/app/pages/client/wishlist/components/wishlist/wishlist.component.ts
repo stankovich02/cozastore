@@ -16,6 +16,9 @@ export class WishlistComponent implements OnInit{
   }
   ngOnInit(): void {
     if(this.authService.isLoggedIn()){
+      if(this.authService.isAdmin()){
+        this.router.navigate(['/home']);
+      }
       this.wishlistService.getProductsFromWishlist().subscribe((wishlist) => {
         this.products = wishlist;
       });
