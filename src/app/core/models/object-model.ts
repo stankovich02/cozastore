@@ -57,3 +57,6 @@ export interface ValidatonError{
 export interface AuthResponse{
     token: string;
 }
+export interface UploadImageAPI{
+    file: string;
+}

@@ -2,8 +2,8 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { PagedResponse } from '../../../../../core/models/object-model';
 import Swal from 'sweetalert2';
+import { PagedResponse } from '../../../../core/models/object-model';
 
 @Component({
   selector: 'app-generic-table',
@@ -203,5 +203,11 @@ export class GenericTableComponent{
       }
     })
    
+  }
+  navigateToCreate(){
+    this.router.navigate([this.router.url + '/create']);
+  }
+  navigateToUpdate(id : number){
+    this.router.navigate([`${this.router.url}/${id}/update`]);
   }
 }

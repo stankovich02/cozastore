@@ -1,0 +1,91 @@
+<form class="mx-auto mb-5" style="width: 300px;">
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="text" [(ngModel)]="product.name" placeholder="Product name" id="productName" class="form-control" name="productName" />
+        @if(errors.productName){
+        <p class="text-danger mb-3">{{errors.productName}}</p>
+        }
+    </div>
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="text" [(ngModel)]="product.description" placeholder="Description" id="description" class="form-control" name="description" />
+        @if(errors.description){
+        <p class="text-danger mb-3">{{errors.description}}</p>
+        }
+    </div>
+
+    <div data-mdb-input-init class="form-outline mb-4">
+        <select [(ngModel)]="product.categoryId" id="categoryId" class="form-control" name="categoryId">
+            <option value="0">Select category</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+        @if(errors.categoryId){
+          <p class="text-danger mb-3">{{errors.categoryId}}</p>
+          }
+      </div>
+      <div data-mdb-input-init class="form-outline mb-4">
+        <select [(ngModel)]="product.brandId" id="brandId" class="form-control" name="brandId">
+            <option value="0">Select brand</option>
+            <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
+        </select>
+        @if(errors.brandId){
+          <p class="text-danger mb-3">{{errors.brandId}}</p>
+          }
+      </div>
+      <div data-mdb-input-init class="form-outline mb-4">
+        <select [(ngModel)]="product.genderId" id="genderId" class="form-control" name="genderId">
+            <option value="0">Select gender</option>
+            <option *ngFor="let gender of genders" [value]="gender.id">{{gender.name}}</option>
+        </select>
+        @if(errors.genderId){
+          <p class="text-danger mb-3">{{errors.genderId}}</p>
+          }
+      </div>
+      <div data-mdb-input-init class="form-outline mb-4">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" [(ngModel)]="product.price" id="price" class="form-control" name="price" />
+        @if(errors.price){
+        <p class="text-danger mb-3">{{errors.price}}</p>
+        }
+      </div>
+      <div data-mdb-input-init class="form-outline mb-4">
+        <select [(ngModel)]="product.sizes" id="sizes" class="form-control" name="sizes" multiple>
+            <option value="0">Select sizes</option>
+            <option *ngFor="let size of sizes" [value]="size.id">{{size.name}}</option>
+        </select>
+        @if(errors.sizes){
+          <p class="text-danger mb-3">{{errors.sizes}}</p>
+          }
+      </div>
+      <div data-mdb-input-init class="form-outline mb-4">
+        <select [(ngModel)]="product.colors" id="colors" class="form-control" name="colors" multiple>
+            <option value="0">Select colors</option>
+            <option *ngFor="let color of colors" [value]="color.id">{{color.name}}</option>
+        </select>
+        @if(errors.colors){
+          <p class="text-danger mb-3">{{errors.colors}}</p>
+          }
+      </div>
+      <div data-mdb-input-init class="form-outline mb-4">
+        <input type="file" class="images mb-2"  name="images" #img1 (change)="uploadImage(img1.files[0])"/>
+        @if(product.images[0]){
+          <img src="http://localhost:5001/{{product.images[0]}}" style="width: 70px;"/>
+        }
+        <input type="file" class="images mb-2" name="images" #img2 (change)="uploadImage(img2.files[0])"/>
+        @if(product.images[1]){
+        <img src="http://localhost:5001/{{product.images[1]}}" style="width: 70px;"/>
+        }
+        <input type="file" class="images mb-2" name="images" #img3 (change)="uploadImage(img3.files[0])"/>
+        @if(product.images[2]){
+        <img src="http://localhost:5001/{{product.images[2]}}" style="width: 70px;"/>
+        }
+        @if(errors.images){
+        <p class="text-danger mb-3">{{errors.images}}</p>
+        }
+      </div>
+    @if (this.router.url.includes("update")) {
+    <button class="btn btn-primary btn-block mb-4" (click)="updateProduct()">Update product</button>
+    } 
+    @else {
+    <button class="btn btn-primary btn-block mb-4" (click)="addProduct()">Add product</button>
+    }
+  </form>

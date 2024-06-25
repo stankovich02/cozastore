@@ -19,6 +19,9 @@
       </ul>
     </div>
     <div class="col-10">
+        @if(this.router.url.includes('dashboard')){
+            <app-dashboard></app-dashboard>
+        }
       <app-generic-table></app-generic-table>
     </div>
   </div>

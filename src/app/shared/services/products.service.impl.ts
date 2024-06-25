@@ -17,7 +17,7 @@ export class ProductsServiceImpl implements IProductService  {
     return this.http.get<PagedResponse<Product>>(`${this.baseUrl}?isActive=true`);
   }
   getLatestProducts(numOfProducts : number) : Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.baseUrl}/latest?limit=${numOfProducts}`);
+    return this.http.get<Product[]>(`${this.baseUrl}/latest?isActive=true&limit=${numOfProducts}`);
   }
   getProduct(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.baseUrl}/${id}`);

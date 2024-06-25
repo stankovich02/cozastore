@@ -47,13 +47,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/client/checkout/checkout.module').then(m => m.CheckoutModule)
   },
   {
-    path:"admin",
-    loadChildren:()=>import('./pages/admin/dashboard/dashboard.module').then(m => m.DashboardModule)
+    path:"admin/dashboard",
+    loadChildren:()=>import('./pages/admin/admin.module').then(m => m.AdminModule)
   },
   { 
-    path: '**', 
-    redirectTo: '404' 
-  }
+    path: 'admin', 
+    pathMatch: 'prefix',
+    loadChildren:()=>import('./pages/admin/admin.module').then(m => m.AdminModule)
+  },
 ];
 
 @NgModule({

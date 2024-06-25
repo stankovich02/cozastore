@@ -1,5 +1,5 @@
 @if(tableForCreate.includes(table)){
-    <button class="btn btn-primary mb-3">Create entity</button>
+    <button class="btn btn-primary mb-3" (click)="navigateToCreate()">Create entity</button>
 }
 @if(items){
     <div id="filters" class="d-flex mb-3">
@@ -46,7 +46,7 @@
                             <img src="http://localhost:5001/{{item[column]}}" alt="image" style="width: 50px; height: 50px; object-fit: cover;">
                         </td>
                     }
-                    @else if(column == 'price'){
+                    @else if(column == 'price' && table == 'products'){
                         <td>
                            ${{item['price']['activePrice']}}
                         </td>  
@@ -70,8 +70,9 @@
                 
                 @if(tableForUpdate.includes(table) && tableForDelete.includes(table)){
                    <td>
-                        <button class="btn btn-primary">Update</button>
+                       
                         @if(item['status'] == 'Active'){
+                            <button (click)="navigateToUpdate(item['id'])" class="btn btn-primary">Update</button>
                             <button class="btn btn-danger" style="margin-left: 10px;" (click)="deleteEntity(item['id'])">Delete</button>
                         }
                         @else {
